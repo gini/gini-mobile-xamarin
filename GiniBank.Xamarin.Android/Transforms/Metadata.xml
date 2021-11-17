@@ -1,0 +1,35 @@
+﻿<metadata>
+
+  <attr path="/api/package[@name='net.gini.android.bank.sdk.capture']/class[@name='CaptureFlowImportContract']/method[@name='parseResult' and count(parameter)=2 and parameter[1][@type='int'] and parameter[2][@type='android.content.Intent']]" name="override">true</attr>
+  <attr path="/api/package[@name='net.gini.android.bank.sdk.capture']/class[@name='CaptureFlowImportContract']/method[@name='parseResult' and count(parameter)=2 and parameter[1][@type='int'] and parameter[2][@type='android.content.Intent']]" name="managedReturn">Java.Lang.Object</attr>
+
+  <attr path="/api/package[@name='net.gini.android.bank.sdk.capture']/class[@name='CaptureFlowContract']/method[@name='parseResult' and count(parameter)=2 and parameter[1][@type='int'] and parameter[2][@type='android.content.Intent']]" name="override">true</attr>
+  <attr path="/api/package[@name='net.gini.android.bank.sdk.capture']/class[@name='CaptureFlowContract']/method[@name='parseResult' and count(parameter)=2 and parameter[1][@type='int'] and parameter[2][@type='android.content.Intent']]" name="managedReturn">Java.Lang.Object</attr>
+
+  <attr path="/api/package[@name='net.gini.android.bank.sdk.capture']/class[@name='CaptureFlowContract']/method[@name='createIntent' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='kotlin.Unit']]" name="override">true</attr>
+  <attr path="/api/package[@name='net.gini.android.bank.sdk.capture']/class[@name='CaptureFlowContract']/method[@name='createIntent' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='kotlin.Unit']]/parameter[2]" name="managedType">Java.Lang.Object</attr>
+
+  <attr path="/api/package[@name='net.gini.android.bank.sdk.capture']/class[@name='CaptureFlowImportContract']/method[@name='createIntent' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='net.gini.android.bank.sdk.capture.CaptureImportInput']]" name="override">true</attr>
+  <attr path="/api/package[@name='net.gini.android.bank.sdk.capture']/class[@name='CaptureFlowImportContract']/method[@name='createIntent' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='net.gini.android.bank.sdk.capture.CaptureImportInput']]/parameter[2]" name="managedType">Java.Lang.Object</attr>
+
+
+  <attr path="/api/package[@name='net.gini.android.bank.sdk.capture.digitalinvoice']/class[@name='SelectableLineItem.Creator']/method[@name='newArray' and count(parameter)=1 and parameter[1][@type='int']]" name="managedReturn">Java.Lang.Object[]</attr>
+  <attr path="/api/package[@name='net.gini.android.bank.sdk.capture.digitalinvoice']/class[@name='LineItem.Creator']/method[@name='newArray' and count(parameter)=1 and parameter[1][@type='int']]" name="managedReturn">Java.Lang.Object[]</attr>
+
+  <attr path="/api/package[@name='net.gini.android.bank.sdk.capture.digitalinvoice']/class[@name='LineItem.Creator']/method[@name='createFromParcel' and count(parameter)=1 and parameter[1][@type='android.os.Parcel']]" name="managedReturn">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='net.gini.android.bank.sdk.capture.digitalinvoice']/class[@name='SelectableLineItem.Creator']/method[@name='createFromParcel' and count(parameter)=1 and parameter[1][@type='android.os.Parcel']]" name="managedReturn">Java.Lang.Object</attr>
+
+  <remove-node path="/api/package[@name='net.gini.android.bank.sdk.capture.digitalinvoice.onboarding']/class[@name='DigitalInvoiceOnboardingFragment']" />
+  <remove-node path="/api/package[@name='net.gini.android.bank.sdk.capture.digitalinvoice.details']/class[@name='LineItemDetailsFragment']" />
+  <remove-node path="/api/package[@name='net.gini.android.bank.sdk.capture.digitalinvoice']/class[@name='DigitalInvoiceFragment']" />
+
+  <attr path="/api/package[@name='net.gini.android.bank.sdk']/class[@name='GiniBank']/method[@name='setCaptureConfiguration']" name="visibility">public</attr>
+
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+</metadata>

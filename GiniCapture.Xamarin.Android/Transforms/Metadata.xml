@@ -1,0 +1,29 @@
+﻿<metadata>
+
+  <remove-node path="/api/package[starts-with(@name,'net.gini.android.capture.internal.cache')]" />')]" />
+  <remove-node path="/api/package[starts-with(@name,'net.gini.android.capture.internal.camera')]" />')]" />
+  <remove-node path="/api/package[starts-with(@name,'net.gini.android.capture.internal.fileimport')]" />')]" />
+  <remove-node path="/api/package[starts-with(@name,'net.gini.android.capture.internal.qrcode')]" />')]" />
+
+  <remove-node path="/api/package[@name='net.gini.android.capture.internal.util']/class[@name='Size']" />
+  <remove-node path="/api/package[@name='net.gini.android.capture.internal.util']/class[@name='UriReaderAsyncTask']" />
+
+  <remove-node path="/api/package[@name='net.gini.android.capture.analysis']/class[@name='AnalysisFragmentCompat']" />
+  <remove-node path="/api/package[@name='net.gini.android.capture.camera']/class[@name='CameraFragmentCompat']" />
+  <remove-node path="/api/package[@name='net.gini.android.capture.review.multipage']/class[@name='MultiPageReviewFragment']" />
+  <remove-node path="/api/package[@name='net.gini.android.capture.review']/class[@name='ReviewFragmentCompat']" />
+  <remove-node path="/api/package[@name='net.gini.android.capture.noresults']/class[@name='NoResultsFragmentCompat']" />
+  <remove-node path="/api/package[@name='net.gini.android.capture.onboarding']/class[@name='OnboardingPageFragmentCompat']" />
+  <remove-node path="/api/package[@name='net.gini.android.capture.onboarding']/class[@name='OnboardingFragmentCompat']" />
+  <remove-node path="/api/package[@name='net.gini.android.capture.review.multipage.thumbnails']/class[@name='ThumbnailsAdapter']" />
+
+  <attr path="/api/package[@name='net.gini.android.capture.camera']/class[@name='ImageStack.StackBitmap']" name="visibility">public</attr>
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+</metadata>
+

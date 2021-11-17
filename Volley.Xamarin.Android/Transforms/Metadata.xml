@@ -1,0 +1,23 @@
+﻿<metadata>
+
+  <!-- Change the name of the Request interface -->
+  <attr path="/api/package[@name='com.android.volley']/interface[@name='Request.Method']" name="managedName">RequestMethod</attr>
+  <!-- Fix the generics errors -->
+ <attr path="/api/package[@name='com.android.volley']/class[@name='Request']/method[@name='compareTo' and count(parameter)=1 and parameter[1][@type='com.android.volley.Request&lt;T&gt;']]/parameter[1]" name="managedType">Java.Lang.Object</attr>
+ <attr path="/api/package[@name='com.android.volley.toolbox']/class[@name='ImageRequest']/method[@name='deliverResponse' and count(parameter)=1 and parameter[1][@type='android.graphics.Bitmap']]/parameter[1]" name="managedType">Java.Lang.Object</attr>
+
+ <remove-node path="/api/package[@name='com.android.volley.toolbox']/class[@name='JsonRequest']/method[@name='parseNetworkResponse' and count(parameter)=1 and parameter[1][@type='com.android.volley.NetworkResponse']]"/>
+
+ <!--<attr path="/api/package[@name='com.android.volley']/interface[@name='RequestQueue.RequestEventListener']" name="name">RequestQueue.RequestEventManagedListener</attr>-->
+ <remove-node path="/api/package[@name='com.android.volley']/interface[@name='RequestQueue.RequestEventListener']" />
+ 
+
+
+ <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+</metadata>
