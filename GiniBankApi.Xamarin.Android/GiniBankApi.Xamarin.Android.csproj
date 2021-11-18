@@ -54,7 +54,7 @@
     <TransformFile Include="Transforms\EnumMethods.xml" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="Jars\gini-bank-api-lib-1.0.0.aar" />
+    <LibraryProjectZip Include="Jars\gini-bank-api-lib-1.0.1.aar" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GiniInternalCore.Xamarin.Android\GiniInternalCore.Xamarin.Android.csproj">

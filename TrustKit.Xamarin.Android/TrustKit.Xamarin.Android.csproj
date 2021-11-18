@@ -54,7 +54,7 @@
     <TransformFile Include="Transforms\EnumMethods.xml" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="Jars\trustkit-1.1.3.aar" />
+    <LibraryProjectZip Include="Jars\trustkit-1.1.5.aar" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4">

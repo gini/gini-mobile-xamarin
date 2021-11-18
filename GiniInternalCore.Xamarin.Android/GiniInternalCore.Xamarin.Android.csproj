@@ -55,7 +55,7 @@
     <TransformFile Include="Transforms\EnumMethods.xml" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="Jars\gini-internal-core-api-lib-1.0.0.aar" />
+    <LibraryProjectZip Include="Jars\gini-internal-core-api-lib-1.0.1.aar" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedJar Include="Jars\bolts-android-1.4.0.jar" />
