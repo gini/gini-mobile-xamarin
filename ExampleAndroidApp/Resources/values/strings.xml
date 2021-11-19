@@ -8,6 +8,10 @@
     <string name="return_to_business">Return to Business</string>
     <string name="resolve_payment">Pay</string>
 
+    <string name="gini_client_id">gini-client-id</string>
+    <string name="gini_client_secret">GiniClientSecret</string>
+    <string name="gini_email_domain">example.com</string>
+
     <string name="custom_help_screen_title">Custom Help Screen</string>
     <string name="custom_help_screen_greeting">This is a custom help screen.</string>
 

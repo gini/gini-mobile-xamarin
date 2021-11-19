@@ -8,6 +8,7 @@ using Android.Runtime;
 using Android.Widget;
 using AndroidX.Activity.Result;
 using AndroidX.AppCompat.App;
+using Net.Gini.Android.Bank.Api;
 using Net.Gini.Android.Bank.Sdk;
 using Net.Gini.Android.Bank.Sdk.Capture;
 using Net.Gini.Android.Capture;
@@ -61,6 +62,9 @@ namespace ExampleAndroidApp
                     StartGiniCaptureSdkAsync(Intent);
                 }
             }
+
+            var i = new Intent(this, typeof(PayActivity));
+            StartActivityForResult(i, 42);
         }
 
         private async Task StartGiniCaptureSdkAsync(Intent intent = null)
@@ -134,9 +138,9 @@ namespace ExampleAndroidApp
         {
             GiniBank.Instance.ReleaseCapture(this);
 
-            var clientId = "your-client-id";
-            var clientSecret = "your-client-secret";
-            var emailDomain = "example-domain.com";
+            var clientId = Resources.GetString(Resource.String.gini_client_id);
+            var clientSecret = Resources.GetString(Resource.String.gini_client_secret);
+            var emailDomain = Resources.GetString(Resource.String.gini_email_domain);
 
             //Create the default network service instance which talks to the Gini API to upload images and pdfs and downloads the extractions
             _giniNetworkService = GiniCaptureDefaultNetworkService.InvokeBuilder(this)
