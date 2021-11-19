@@ -77,16 +77,7 @@ namespace ExampleAndroidApp
                 GiniBank.Instance.ReleaseGiniApi();
                 GiniBank.Instance.SetGiniApi((GiniBankAPI)giniBankApi);
 
-                // test ginipay intent
-                Uri.Builder builder = new Uri.Builder();
-                builder.Scheme("ginipay")
-                    .Authority("payment")
-                    .AppendPath("1");
-                var myUrl = builder.Build();
-                var ginipayIntent = new Intent(Intent.ActionView, myUrl, this, typeof(PayActivity));
-                // ----
-
-                _paymentRequestId = PaymentRequestIntentKt.GetRequestId(ginipayIntent);
+                _paymentRequestId = PaymentRequestIntentKt.GetRequestId(Intent);
                 // TODO: resolve issue with suspend fun
                 _paymentRequest = GiniBank.Instance.GetPaymentRequest(_paymentRequestId, null);
 

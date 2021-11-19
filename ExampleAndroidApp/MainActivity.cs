@@ -62,9 +62,6 @@ namespace ExampleAndroidApp
                     StartGiniCaptureSdkAsync(Intent);
                 }
             }
-
-            var i = new Intent(this, typeof(PayActivity));
-            StartActivityForResult(i, 42);
         }
 
         private async Task StartGiniCaptureSdkAsync(Intent intent = null)
