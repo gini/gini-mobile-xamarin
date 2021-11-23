@@ -8,7 +8,6 @@ using Android.Runtime;
 using Android.Widget;
 using AndroidX.Activity.Result;
 using AndroidX.AppCompat.App;
-using Net.Gini.Android.Bank.Api;
 using Net.Gini.Android.Bank.Sdk;
 using Net.Gini.Android.Bank.Sdk.Capture;
 using Net.Gini.Android.Capture;
