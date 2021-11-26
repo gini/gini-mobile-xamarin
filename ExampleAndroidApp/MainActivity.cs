@@ -13,7 +13,6 @@ using Net.Gini.Android.Bank.Sdk.Capture;
 using Net.Gini.Android.Capture;
 using Net.Gini.Android.Capture.Help;
 using Net.Gini.Android.Capture.Network;
-using Net.Gini.Android.Capture.Network.Model;
 using Net.Gini.Android.Capture.Onboarding;
 using Net.Gini.Android.Capture.Requirements;
 using Net.Gini.Android.Capture.Util;
@@ -26,7 +25,7 @@ namespace ExampleAndroidApp
         Categories = new[] { "android.intent.category.DEFAULT" }, DataMimeType = "image/*")]
     [IntentFilter(new[] { Intent.ActionView, Intent.ActionSend },
         Categories = new[] { "android.intent.category.DEFAULT" }, DataMimeType = "application/pdf")]
-    public class MainActivity : AppCompatActivity, IActivityResultCallback, IGiniCaptureNetworkCallback
+    public class MainActivity : AppCompatActivity, IActivityResultCallback
     {
         private ActivityResultLauncher _captureLauncher;
         private ActivityResultLauncher _captureImportLauncher;
@@ -169,7 +168,7 @@ namespace ExampleAndroidApp
                 false, // Flash on by default
                 true, // Back Buttons Enabled
                 true, // Return Assistant Enabled
-                null, // Event Tracker
+                new GiniCaptureEventTracker(), // Event Tracker
                 new List<HelpItem.Custom> // Custom Help Items
                 {
                     new HelpItem.Custom(Resource.String.custom_help_screen_title,
@@ -181,78 +180,14 @@ namespace ExampleAndroidApp
             GiniBank.Instance.SetCaptureConfiguration(config);
         }
 
-        private void ShowExtractions(IDictionary<string, GiniCaptureSpecificExtraction> extractions)
-        {
-            var msg = "";
-
-            foreach (var extraction in extractions)
-            {
-                msg += $"{extraction.Value.Name}: {extraction.Value.Value}\n";
-            }
-
-            var dialog = new AndroidX.AppCompat.App.AlertDialog.Builder(this);
-            dialog.SetTitle("Extractions");
-            dialog.SetMessage(msg);
-            dialog.SetNegativeButton("Cancel", (s, e) => { });
-            dialog.SetPositiveButton("Send Feedback", (s, e) => { SendFeedback(extractions); });
-            dialog.Show();
-        }
-
-        private void SendFeedback(IDictionary<string, GiniCaptureSpecificExtraction> extractions)
-        {
-            // An example for sending feedback where we change the amount or add one if it is missing
-            // Feedback should be sent only for the user visible fields. Non-visible fields should be filtered out.
-            // In a real application the user input should be used as the new value.
-
-            var amount = extractions["amountToPay"];
-            if (amount != null)
-            {   // Let's assume the amount was wrong and change it
-                amount.Value = "10.00:EUR";
-                Toast.MakeText(this, "Amount changed to 10.00:EUR", ToastLength.Long).Show();
-            }
-            else
-            {   // Amount was missing, let's add it
-                extractions.Add("amountToPay", new GiniCaptureSpecificExtraction("amountToPay", "10.00:EUR", "amount", null, new List<GiniCaptureExtraction>()));
-                Toast.MakeText(this, "Added amount of 10.00:EUR", ToastLength.Short).Show();
-            }
-
-            // Assuming the users is shown the amountToPay and the iban extractions
-            Dictionary<string, GiniCaptureSpecificExtraction> userVisibleExtractions = new Dictionary<string, GiniCaptureSpecificExtraction>();
-            userVisibleExtractions.Add("amountToPay", extractions["amountToPay"]);
-            userVisibleExtractions.Add("iban", extractions["iban"]);
-
-            // Now we can send feedback for the user-visible extractions
-            // IMPORTANT: send feedback only for extractions the user has seen
-            _giniNetworkApi.SendFeedback(userVisibleExtractions, this);
-        }
-
-        #region IGiniCaptureNetworkCallback interface implementation
-
-        public void Success(Java.Lang.Object p0)
-        {
-            Toast.MakeText(this, "Feedback sending succeeded", ToastLength.Long).Show();
-        }
-
-        public void Failure(Java.Lang.Object p0)
-        {
-            Error error = (Error)p0;
-            Toast.MakeText(this, $"Feedback sending failed: {error}", ToastLength.Long).Show();
-        }
-
-        public void Cancelled()
-        {
-            Toast.MakeText(this, $"Feedback sending cancelled", ToastLength.Long).Show();
-        }
-
-        #endregion
-
         public void OnActivityResult(Java.Lang.Object result)
         {
             if (result is CaptureResult captureResult)
             {
-                if (captureResult is CaptureResult.Success)
+                if (captureResult is CaptureResult.Success success)
                 {
-                    ShowExtractions(((CaptureResult.Success)captureResult).SpecificExtractions);
+                    ExtractionsActivity.SpecificExtractions = success.SpecificExtractions;
+                    StartActivity(ExtractionsActivity.GetActionIndent(this));
                 }
                 else if (captureResult is CaptureResult.Error error)
                 {

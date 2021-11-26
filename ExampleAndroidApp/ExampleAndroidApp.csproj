@@ -67,6 +67,8 @@
     <Compile Include="CustomHelpActivity.cs" />
     <Compile Include="NoExtractionsActivity.cs" />
     <Compile Include="PayActivity.cs" />
+    <Compile Include="GiniCaptureEventTracker.cs" />
+    <Compile Include="ExtractionsActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -108,10 +110,19 @@
       <SubType></SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_extractions.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\menu\menu_extractions.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
     <Folder Include="Resources\layout\" />
+    <Folder Include="Resources\menu\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.3.1.3" />

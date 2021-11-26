@@ -59,13 +59,10 @@ namespace ExampleAndroidApp
             {
                 _paymentRequestId = PaymentRequestIntentKt.GetRequestId(Intent);
 
-                // TODO: resolve issue with suspend fun
                 GiniBank.Instance.GetPaymentRequest(_paymentRequestId,
                     CallbackContinuation(new ContinuationCallBack(
                         (result) =>
                         {
-                            Toast.MakeText(this, result.ToString(), ToastLength.Long).Show();
-
                             _paymentRequest = result as PaymentRequest;
                             FindViewById<TextInputEditText>(Resource.Id.recipient).Text = _paymentRequest.Recipient;
                             FindViewById<TextInputEditText>(Resource.Id.iban).Text = _paymentRequest.Iban;
@@ -96,14 +93,11 @@ namespace ExampleAndroidApp
                 var purpose = FindViewById<TextInputEditText>(Resource.Id.purpose).Text;
                 var bic = _paymentRequest?.Bic ?? "";
 
-                // TODO: resolve issue with suspend fun
                 GiniBank.Instance.ResolvePaymentRequest(_paymentRequestId,
                     new ResolvePaymentInput(recepient, iban, amount, purpose, bic),
                     CallbackContinuation(new ContinuationCallBack(
                         (result) =>
                         {
-                            Toast.MakeText(this, result.ToString(), ToastLength.Long).Show();
-
                             _resolvedPayment = result as ResolvedPayment;
 
                             FindViewById<Button>(Resource.Id.resolve_payment).Visibility = Android.Views.ViewStates.Gone;
