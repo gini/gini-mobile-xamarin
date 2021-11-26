@@ -6,7 +6,6 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
-using AndroidX.RecyclerView.Widget;
 using Net.Gini.Android.Capture;
 using Net.Gini.Android.Capture.Network;
 using Net.Gini.Android.Capture.Network.Model;
@@ -106,13 +105,13 @@ namespace ExampleAndroidApp
 
         private void ShowProgressIndicator()
         {
-            FindViewById<RecyclerView>(Resource.Id.listview_extractions).Animate().Alpha(0.5f);
+            FindViewById<ListView>(Resource.Id.listview_extractions).Animate().Alpha(0.5f);
             FindViewById<LinearLayout>(Resource.Id.layout_progress).Visibility = ViewStates.Visible;
         }
 
         private void HideProgressIndicator()
         {
-            FindViewById<RecyclerView>(Resource.Id.listview_extractions).Animate().Alpha(1.0f);
+            FindViewById<ListView>(Resource.Id.listview_extractions).Animate().Alpha(1.0f);
             FindViewById<LinearLayout>(Resource.Id.layout_progress).Visibility = ViewStates.Gone;
         }
 
