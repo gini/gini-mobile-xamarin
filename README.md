@@ -51,7 +51,7 @@ GiniCaptureNetwork.Xamarin.Android
 ```
 3. Add next NuGet library
 ```
-Xamarin.GooglePlayServices.Vision
+Xamarin.GooglePlayServices.
 ```
 4. Add Camera permission to AndroidManifest.xml
 ```
@@ -110,3 +110,116 @@ Do the same steps for all bindings<br />
 https://docs.microsoft.com/en-us/xamarin/android/platform/binding-java-library/troubleshooting-bindings
   
 
+  
+  
+iOS
+---
+
+GiniBank SDK for iOS is provided as a DLL file called `GiniBank.iOS.dll` located in `ExampleiOSApp`. It needs to be added to your project as a reference.
+
+The API for the iOS integration is provided through a proxy library (`GiniBank.iOS.Proxy`) and it's a limited version of what's available natively. Please contact Gini if you need to access any functionality that isn't exposed. Only the `Screen API` is supported at this point.
+
+### Example app
+In order to run the example app on iOS, first supply your `domain`, `id`, and `secret` in the `GiniBankSDKHelper` class. Then you can run the app and test the extraction. The extractions are written to the console.
+
+The example app is meant to provide a sample code to show how the GiniBank SDK can be used. Please see the `GiniBankSDKHelper.cs` in the `ExampleiOSApp` project to get you started.
+
+### Prerequisits
+In order to use the GiniBank SDK please ensure your project supplies the following:
+
+* Keychan capability should be enabled in Entitlements.plist
+* Camera Usage Description provided in the Info.plist
+* Photo Library Usage Description provided in the Info.plist (if you want to enable loading photographs from the user's Photo app)
+
+The app will crash at various points of execution if the above are not provided.
+
+### Usage
+
+Instantiate the `GiniCaptureProxy` and present the view controller accessible from the `ViewController` property:
+
+```
+GiniCaptureProxy gcProxy = new GiniCaptureProxy(domain, id, secret, _gConfiguration, _gcDelegate);
+var gcViewController = gcProxy.ViewController;
+_gcDelegate.GCViewController = gcViewController;
+```
+
+The `GiniCaptureProxy` initialiser takes your credentials (`domain`, `id`, and `secret`), a `GiniConfigurationProxy` instance, and a `GiniCaptureDelegate` instance. 
+
+The `GiniConfigurationProxy` allows you to configure different aspects of GiniBank SDK such as whether you want to display a flash 
+toggle button, or what tint should the navigation bar have. Please refer to the example app to see the currently available options
+and to the native documentation for explanation of the options.
+
+Implement the `IGiniCaptureProxyDelegate` protocol in order to receive callbacks from GiniBank SDK with extraction results or to be informed about lack of thereof.
+
+### Customization
+
+Components can be customized either through the `GiniConfiguration`, the `Localizable.strings` file or through the assets. Take a look at the [Customization Guide](https://developer.gini.net/gini-mobile-ios/GiniBankSDK/customization-guide.html) to see which resources can be customized.
+
+#### Strings
+
+String customization is possible by adding GiniBank SDK's localized string keys with you own values to your `Localizable.strings` files.
+
+The example adds `ginicapture.navigationbar.camera.title`, `ginicapture.camera.qrCodeDetectedPopup.message` and `ginicapture.camera.qrCodeDetectedPopup.buttonTitle` localized string keys and own values to both the German and the English `Localizable.strings` file.
+
+#### Buttons
+
+Some buttons in the GiniBank SDK UI can be customized by setting their title or image. To do that, set a property on yout `GiniConfigurationProxy` instance to a `SimplePreferredButtonResource`. The initaliser of `SimplePreferredButtonResource` takes two agruments: `preferredImage` and `preferredText`. If you want the button to have an icon, pass a `UIKit.UIImage` instance as the `preferredImage` and `null` as the `preferredText`. Pass your desired button title as `preferredText` if you want the button to have a text title.
+
+For instance in order to set the close button to have a text title instead of the default cross icon:
+
+```
+GiniConfigurationProxy gConfiguration = new GiniConfigurationProxy();
+...
+gConfiguration.CloseButtonResource = new SimplePreferredButtonResource(null, "Close please");
+```
+
+#### Navigation Bar
+
+To configure the look of the navigation bars in Gini Bank SDK you should use the `GiniConfiguration` instead of `UIAppearance`. This allows GiniBank SDK to prevent issues with the navigation bar colors in the `UIDocumentPickerViewController`.
+
+If you use `UIAppearance` you should reset navigation bar related customizations before launching GiniBank SDK and restore them after GiniBank SDK has exited.
+
+You can customize the following navigation bar and item properties:
+
+```
+GiniConfigurationProxy gConfiguration = new GiniConfigurationProxy
+{
+    NavigationBarItemTintColor = UIColor...,
+    NavigationBarTintColor = UIColor...,
+    NavigationBarTitleColor = UIColor...,
+    NavigationBarItemFont = UIFont...,
+    NavigationBarTitleFont = UIFont...,
+    DocumentPickerNavigationBarTintColor = UIColor...,
+};
+```
+
+#### Onboarding Pages
+
+You can change the onboarding pages in two ways:
+1. By adding your array of custom `UIView`s to `gConfiguration.OnboardingPages`.
+2. By retrieving the default pages from `gConfiguration.OnboardingPages` then altering the order of the pages or remove/add pages. Pass the modified array to `gConfiguration.OnboardingPages`.
+
+The buttons currently available for customization are:
+
+| Asset name in native documentation | `GiniConfigurationProxy` property |
+| ---------------------------------- | --------------------------------- |
+| `navigationCameraClose`            | `CloseButtonResource`             |
+| `navigationCameraHelp`             | `HelpButtonResource`              |
+| `navigationReviewBack`             | `BackToCameraButtonResource`      |
+| `navigationReviewBack`             | `BackToMenuButtonResource`        |
+| `navigationReviewContinue`         | `NextButtonResource`              |
+| `navigationAnalysisBack`           | `CancelButtonResource`            |
+
+### Troubleshooting
+* The app crashes at various points without an informative error message: please make sure that you have enabled all capabilities and provided all usage strings in your `Info.plist` file. 
+* Document picker navigation bar buttons are not visible: please apply navigation bar customizations using the `GiniConfiguration` and reset your `UIAppearance` customizations related to navigation bars before launching GiniBank SDK. After GiniBank SDK has finished you can restore your `UIAppearance` customizations. 
+  
+#### Updating GiniBank.iOS.dll
+  
+1. Open GiniBankProxy.xcodeproj in XCode and build in 'iOS device' and 'ios simulator' modes(release)
+2. Go to /Users/{username}/Library/Developer/Xcode/DerivedData(Xcode->Preferences->Locations-Derived Data)
+3. Copy folders Release-iphoneos and Release-iphonesimulator from GiniBankProxy...../Build/Products/to GiniBank.iOS.Proxy/build folder
+4. run 'bash build.sh'
+  
+new `GiniBank.iOS.dll` will be generated and located in `ExampleiOSApp`
+  
