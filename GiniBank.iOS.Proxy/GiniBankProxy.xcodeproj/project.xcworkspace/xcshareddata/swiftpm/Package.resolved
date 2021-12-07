@@ -1,0 +1,70 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "GiniBankAPILibrary",
+        "repositoryURL": "https://github.com/gini/bank-api-library-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "7320a95b1d788d9730d515a4dc2707a503403a95",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "GiniBankAPILibraryPinning",
+        "repositoryURL": "https://github.com/gini/bank-api-library-pinning-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "0b41fc263070f55601d24b3a21c92d1c654fcde7",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "GiniBankSDK",
+        "repositoryURL": "https://github.com/gini/bank-sdk-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "8ee177b97ff0e68b29939b802e56dbb5d690c231",
+          "version": "1.1.0"
+        }
+      },
+      {
+        "package": "GiniBankSDKPinning",
+        "repositoryURL": "https://github.com/gini/bank-sdk-pinning-ios",
+        "state": {
+          "branch": null,
+          "revision": "cb97ba37b3587dc18fe594aaf8b0a38f005f40da",
+          "version": "1.1.0"
+        }
+      },
+      {
+        "package": "GiniCaptureSDK",
+        "repositoryURL": "https://github.com/gini/capture-sdk-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "0045174d2ce22f06de13aa80a7b7b9f261f29e6c",
+          "version": "1.1.0"
+        }
+      },
+      {
+        "package": "GiniCaptureSDKPinning",
+        "repositoryURL": "https://github.com/gini/capture-sdk-pinning-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "37965afad432c82563d79b6fa2ac086a20db8e21",
+          "version": "1.1.0"
+        }
+      },
+      {
+        "package": "TrustKit",
+        "repositoryURL": "https://github.com/datatheorem/TrustKit.git",
+        "state": {
+          "branch": null,
+          "revision": "3e98aeb36aff65067cdae55bca7be7f1157deffb",
+          "version": "2.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
