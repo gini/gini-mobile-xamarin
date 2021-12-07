@@ -50,19 +50,19 @@ public class AnalysisResultProxy: NSObject {
     }
 }
 
-@objc(GVLProxyDelegate)
-public protocol GVLProxyDelegate {
+@objc(GiniCaptureProxyDelegate)
+public protocol GiniCaptureProxyDelegate {
     
-    @objc func giniVisionAnalysisDidFinishWith(result: AnalysisResultProxy,
+    @objc func giniCaptureAnalysisDidFinishWith(result: AnalysisResultProxy,
                                                sendFeedbackBlock: @escaping (ExtractionProxies) -> Void)
     
-    @objc func giniVisionAnalysisDidFinishWithoutResults(_ showingNoResultsScreen: Bool)
+    @objc func giniCaptureAnalysisDidFinishWithoutResults(_ showingNoResultsScreen: Bool)
     
-    @objc func giniVisionDidCancelAnalysis()
+    @objc func giniCaptureDidCancelAnalysis()
 }
 
-@objc(GVLProxy)
-public class GVLProxy : NSObject {
+@objc(GiniCaptureProxy)
+public class GiniCaptureProxy : NSObject {
     
     private var client: Client
     private let resultsDelegate: ResultsDelegate
@@ -74,11 +74,11 @@ public class GVLProxy : NSObject {
                 id: String,
                 secret: String,
                 configuration: GiniConfigurationProxy?,
-                delegate: GVLProxyDelegate) {
+                delegate: GiniCaptureProxyDelegate) {
         
         self.client = Client(id: id, secret: secret, domain: domain)
         self.resultsDelegate = ResultsDelegate()
-        self.resultsDelegate.gvlProxyDelegate = delegate
+        self.resultsDelegate.gcProxyDelegate = delegate
         
         let giniConfiguration: GiniConfiguration
         
@@ -98,7 +98,7 @@ public class GVLProxy : NSObject {
 
 private class ResultsDelegate: GiniCaptureResultsDelegate {
     
-    weak var gvlProxyDelegate: GVLProxyDelegate?
+    weak var gcProxyDelegate: GiniCaptureProxyDelegate?
     
     public func giniCaptureAnalysisDidFinishWith(result: AnalysisResult,
                                                 sendFeedbackBlock: @escaping ([String : Extraction]) -> Void) {
@@ -115,17 +115,17 @@ private class ResultsDelegate: GiniCaptureResultsDelegate {
             sendFeedbackBlock(extractions)
         }
         
-        gvlProxyDelegate?.giniVisionAnalysisDidFinishWith(result: AnalysisResultProxy(analysisResult: result),
+        gcProxyDelegate?.giniCaptureAnalysisDidFinishWith(result: AnalysisResultProxy(analysisResult: result),
                                                           sendFeedbackBlock: feedbackBlock)
     }
     
     public func giniCaptureAnalysisDidFinishWithoutResults(_ showingNoResultsScreen: Bool) {
         
-        gvlProxyDelegate?.giniVisionAnalysisDidFinishWithoutResults(showingNoResultsScreen)
+        gcProxyDelegate?.giniCaptureAnalysisDidFinishWithoutResults(showingNoResultsScreen)
     }
     
     public func giniCaptureDidCancelAnalysis() {
         
-        gvlProxyDelegate?.giniVisionDidCancelAnalysis()
+        gcProxyDelegate?.giniCaptureDidCancelAnalysis()
     }
 }

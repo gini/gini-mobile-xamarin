@@ -13,7 +13,7 @@ import GiniCaptureSDK
 public class GiniConfigurationProxy: NSObject {
     
     @objc public var debugModeOn = false
-    @objc public var fileImportSupportedTypes: GiniConfigurationProxy.GiniVisionImportFileTypesProxy = .none
+    @objc public var fileImportSupportedTypes: GiniConfigurationProxy.GiniCaptureImportFileTypesProxy = .none
     @objc public var flashToggleEnabled = false
     @objc public var openWithEnabled = false
     @objc public var qrCodeScanningEnabled = false
@@ -51,8 +51,8 @@ public class GiniConfigurationProxy: NSObject {
 
 extension GiniConfigurationProxy {
     
-    @objc(GiniVisionImportFileTypesProxy)
-    public enum GiniVisionImportFileTypesProxy: Int {
+    @objc(GiniCaptureImportFileTypesProxy)
+    public enum GiniCaptureImportFileTypesProxy: Int {
         case none
         case pdf
         case pdf_and_images
@@ -61,9 +61,9 @@ extension GiniConfigurationProxy {
 
 extension GiniConfiguration.GiniCaptureImportFileTypes {
     
-    init(giniVisionImportFileTypesProxy: GiniConfigurationProxy.GiniVisionImportFileTypesProxy) {
+    init(giniCaptureImportFileTypesProxy: GiniConfigurationProxy.GiniCaptureImportFileTypesProxy) {
         
-        switch giniVisionImportFileTypesProxy {
+        switch giniCaptureImportFileTypesProxy {
         case .none: self = .none
         case .pdf: self = .pdf
         case .pdf_and_images: self = .pdf_and_images
@@ -79,7 +79,7 @@ extension GiniConfiguration {
         
         self.debugModeOn = giniConfigurationProxy.debugModeOn
         
-        self.fileImportSupportedTypes = GiniConfiguration.GiniCaptureImportFileTypes(giniVisionImportFileTypesProxy: giniConfigurationProxy.fileImportSupportedTypes)
+        self.fileImportSupportedTypes = GiniConfiguration.GiniCaptureImportFileTypes(giniCaptureImportFileTypesProxy: giniConfigurationProxy.fileImportSupportedTypes)
         self.flashToggleEnabled = giniConfigurationProxy.flashToggleEnabled
         self.openWithEnabled = giniConfigurationProxy.openWithEnabled
         self.qrCodeScanningEnabled = giniConfigurationProxy.qrCodeScanningEnabled
