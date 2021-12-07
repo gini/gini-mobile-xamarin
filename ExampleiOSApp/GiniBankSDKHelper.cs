@@ -50,18 +50,18 @@ namespace ExampleiOSApp
         {
             Console.WriteLine("Start");
 
-            GiniCaptureProxy gvlProxy = new GiniCaptureProxy(
+            GiniCaptureProxy gcProxy = new GiniCaptureProxy(
                 domain,
                 id,
                 secret,
                 _gConfiguration,
                 _gcDelegate);
 
-            UIViewController gvlViewController = gvlProxy.ViewController;
-            _gcDelegate.GCViewController = gvlViewController;
+            var gcViewController = gcProxy.ViewController;
+            _gcDelegate.GCViewController = gcViewController;
 
 
-            GetTopViewController().ShowViewController(gvlViewController, null);
+            GetTopViewController().ShowViewController(gcViewController, null);
         }
 
         private UIViewController GetTopViewController()
