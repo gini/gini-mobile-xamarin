@@ -12,7 +12,8 @@ Requirements
 
 ##### iOS
 * Xcode >=13.1
-
+* [Objective Sharpie](https://docs.microsoft.com/en-us/xamarin/cross-platform/macios/binding/objective-sharpie/get-started) >=3.5 
+ 
 ##### Android
 * SDK Tools Version: 26.1.1
 * SDK Platform Tools Version: 31.0.3
