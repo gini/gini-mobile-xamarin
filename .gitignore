@@ -2,3 +2,8 @@ bin
 obj
 packages
 .vs
+GiniBank.iOS.Proxy/build/Release-fat
+GiniBank.iOS.Proxy/build/Release-iphoneos
+GiniBank.iOS.Proxy/build/Release-iphonesimulator
+GiniBank.iOS.Proxy/build/XamarinApiDef
+GiniBank.iOS.Proxy/GiniBankProxy.xcodeproj/project.xcworkspace/xcuserdata/andrew.xcuserdatad/UserInterfaceState.xcuserstate
