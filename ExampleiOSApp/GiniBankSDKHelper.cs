@@ -37,13 +37,13 @@ namespace ExampleiOSApp
             };
 
             // You can change the order of the onboarding pages by getting the default pages and modifying the array
-            //UIView[] pages = gvlConfiguration.OnboardingPages;
-            //UIView page1 = pages[0];
-            //pages[0] = pages[2];
-            //pages[2] = page1;
+            UIView[] pages = _gConfiguration.OnboardingPages;
+            UIView page1 = pages[0];
+            pages[0] = pages[2];
+            pages[2] = page1;
 
             //// Set the modified pages to be used for onboarding
-            //gvlConfiguration.OnboardingPages = pages;
+            _gConfiguration.OnboardingPages = pages;
         }
 
         public void Start()
@@ -92,20 +92,20 @@ namespace ExampleiOSApp
         {
             Console.WriteLine("Extractions returned:");
 
-            //foreach (ExtractionProxy extraction in result.Extractions.Extractions)
-            //{
-            //    Console.WriteLine("Entity: " + extraction.Entity);
-            //    Console.WriteLine("Name: " + extraction.Name);
-            //    Console.WriteLine("Value: " + extraction.Value);
-            //    Console.WriteLine("");
-            //}
+            foreach (ExtractionProxy extraction in result.Extractions.Extractions)
+            {
+                Console.WriteLine("Entity: " + extraction.Entity);
+                Console.WriteLine("Name: " + extraction.Name);
+                Console.WriteLine("Value: " + extraction.Value);
+                Console.WriteLine("");
+            }
 
-            //gvlViewController.DismissViewController(true, null);
+            GCViewController.DismissViewController(true, null);
 
-            //// Let's simulate the user correcting the total value
+            // Let's simulate the user correcting the total value
 
-            //int totalValueIndex = Array.FindIndex(result.Extractions.Extractions, extraction => extraction.Entity == "amount");
-            //result.Extractions.Extractions[totalValueIndex].Value = "45.50:EUR";
+            int totalValueIndex = Array.FindIndex(result.Extractions.Extractions, extraction => extraction.Entity == "amount");
+            result.Extractions.Extractions[totalValueIndex].Value = "45.50:EUR";
 
             sendFeedbackBlock(result.Extractions);
         }

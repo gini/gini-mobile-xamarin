@@ -39,7 +39,6 @@ mv build/XamarinApiDef/StructsAndEnums.cs_new build/XamarinApiDef/StructsAndEnum
 cp build/XamarinApiDef/* ../GiniBank.iOS
 
 # Build Bindings project
-cd ../Bindings
 msbuild ../GiniBank.iOS/GiniBank.iOS.csproj -t:Clean
 msbuild ../GiniBank.iOS/GiniBank.iOS.csproj
 
