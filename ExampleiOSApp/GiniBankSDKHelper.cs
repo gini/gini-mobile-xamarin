@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using ExampleiOSApp.Helpers;
 using Foundation;
 using GiniBank.iOS;
 using UIKit;
@@ -8,10 +9,6 @@ namespace ExampleiOSApp
 {
     public class GiniBankSDKHelper
     {
-        private readonly string domain = "<domain>";
-        private readonly string id = "<id>";
-        private readonly string secret = "<secret>";
-
         private readonly GiniCaptureDelegate _gcDelegate;
         private readonly GiniConfigurationProxy _gConfiguration;
 
@@ -50,10 +47,12 @@ namespace ExampleiOSApp
         {
             Console.WriteLine("Start");
 
+            var credentials = CredentialsHelper.GetGiniBankCredentials();
+
             GiniCaptureProxy gcProxy = new GiniCaptureProxy(
-                domain,
-                id,
-                secret,
+                credentials.clientDomain,
+                credentials.clientId,
+                credentials.clientPassword,
                 _gConfiguration,
                 _gcDelegate);
 

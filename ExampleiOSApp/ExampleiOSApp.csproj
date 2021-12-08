@@ -124,6 +124,7 @@
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Resources\" />
+        <Folder Include="Helpers\" />
     </ItemGroup>
     <ItemGroup>
         <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -143,6 +144,10 @@
             <DependentUpon>ViewController.cs</DependentUpon>
         </Compile>
         <Compile Include="GiniBankSDKHelper.cs" />
+        <Compile Include="Helpers\CredentialsHelper.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <BundleResource Include="Credentials.plist" />
     </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -7,6 +7,7 @@ namespace ExampleiOSApp
     {
         public ViewController(IntPtr handle) : base(handle)
         {
+
         }
 
         public override void ViewDidAppear(bool animated)
