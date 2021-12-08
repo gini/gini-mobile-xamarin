@@ -10,10 +10,8 @@ namespace ExampleiOSApp
 
         }
 
-        public override void ViewDidAppear(bool animated)
+        partial void ButtonStartClick(Foundation.NSObject sender)
         {
-            base.ViewDidAppear(animated);
-
             try
             {
                 var giniBankSDKHelper = new GiniBankSDKHelper();
