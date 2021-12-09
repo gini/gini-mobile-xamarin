@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using ExampleiOSApp.Helpers;
 using Foundation;
 using GiniBank.iOS;
@@ -12,9 +11,21 @@ namespace ExampleiOSApp
         private readonly GiniCaptureDelegate _gcDelegate;
         private readonly GiniConfigurationProxy _gConfiguration;
 
+        /// <summary>
+        /// showingNoResultsScreen
+        /// </summary>
+        public Action<bool> OnGiniCaptureAnalysisDidFinishWithoutResults;
+
+        /// <summary>
+        /// result, sendFeedbackBlock
+        /// </summary>
+        public Action<AnalysisResultProxy, Action<ExtractionProxies>> OnGiniCaptureAnalysisDidFinishWithResult;
+
+        public Action OnGiniCaptureDidCancelAnalysis;
+
         public GiniBankSDKHelper()
         {
-            _gcDelegate = new GiniCaptureDelegate();
+            _gcDelegate = new GiniCaptureDelegate(this);
 
             _gConfiguration = new GiniConfigurationProxy
             {
@@ -43,10 +54,8 @@ namespace ExampleiOSApp
             _gConfiguration.OnboardingPages = pages;
         }
 
-        public void Start()
+        public void Start(UIViewController viewController)
         {
-            Console.WriteLine("Start");
-
             var credentials = CredentialsHelper.GetGiniBankCredentials();
 
             GiniCaptureProxy gcProxy = new GiniCaptureProxy(
@@ -59,60 +68,61 @@ namespace ExampleiOSApp
             var gcViewController = gcProxy.ViewController;
             _gcDelegate.GCViewController = gcViewController;
 
-
-            GetTopViewController().ShowViewController(gcViewController, null);
-        }
-
-        private UIViewController GetTopViewController()
-        {
-            var window = UIKit.UIApplication.SharedApplication.KeyWindow;
-            var vc = window.RootViewController;
-            while (vc.PresentedViewController != null)
-                vc = vc.PresentedViewController;
-
-            if (vc is UIKit.UINavigationController navController)
-                vc = navController.ViewControllers.Last();
-
-            return vc;
+            viewController.ShowViewController(gcViewController, null);
         }
     }
 
     public class GiniCaptureDelegate : NSObject, GiniCaptureProxyDelegate
     {
+        private readonly GiniBankSDKHelper _giniBankSDKHelper;
+
         public UIViewController GCViewController { get; set; }
+
+        public GiniCaptureDelegate(GiniBankSDKHelper giniBankSDKHelper)
+        {
+            _giniBankSDKHelper = giniBankSDKHelper;
+        }
 
         public void GiniCaptureAnalysisDidFinishWithoutResults(bool showingNoResultsScreen)
         {
             Console.WriteLine("GiniCapture finished without results.");
+
             GCViewController.DismissViewController(true, null);
+
+            _giniBankSDKHelper.OnGiniCaptureAnalysisDidFinishWithoutResults?.Invoke(showingNoResultsScreen);
         }
 
         public void GiniCaptureAnalysisDidFinishWithResult(AnalysisResultProxy result, Action<ExtractionProxies> sendFeedbackBlock)
         {
             Console.WriteLine("Extractions returned:");
 
-            foreach (ExtractionProxy extraction in result.Extractions.Extractions)
-            {
-                Console.WriteLine("Entity: " + extraction.Entity);
-                Console.WriteLine("Name: " + extraction.Name);
-                Console.WriteLine("Value: " + extraction.Value);
-                Console.WriteLine("");
-            }
+            _giniBankSDKHelper.OnGiniCaptureAnalysisDidFinishWithResult?.Invoke(result, sendFeedbackBlock);
 
-            GCViewController.DismissViewController(true, null);
+            //foreach (ExtractionProxy extraction in result.Extractions.Extractions)
+            //{
+            //    Console.WriteLine("Entity: " + extraction.Entity);
+            //    Console.WriteLine("Name: " + extraction.Name);
+            //    Console.WriteLine("Value: " + extraction.Value);
+            //    Console.WriteLine("");
+            //}
 
-            // Let's simulate the user correcting the total value
+            //GCViewController.DismissViewController(true, null);
 
-            int totalValueIndex = Array.FindIndex(result.Extractions.Extractions, extraction => extraction.Entity == "amount");
-            result.Extractions.Extractions[totalValueIndex].Value = "45.50:EUR";
+            //// Let's simulate the user correcting the total value
 
-            sendFeedbackBlock(result.Extractions);
+            //int totalValueIndex = Array.FindIndex(result.Extractions.Extractions, extraction => extraction.Entity == "amount");
+            //result.Extractions.Extractions[totalValueIndex].Value = "45.50:EUR";
+
+            //sendFeedbackBlock(result.Extractions);
         }
 
         public void GiniCaptureDidCancelAnalysis()
         {
             Console.WriteLine("GiniCapture cancelled");
+
             GCViewController.DismissViewController(true, null);
+
+            _giniBankSDKHelper.OnGiniCaptureDidCancelAnalysis?.Invoke();
         }
     }
 }
