@@ -118,19 +118,6 @@ namespace ExampleiOSApp
 
             _giniBankSDKHelper.OnCaptureAnalysisDidFinishWithResult?.Invoke(result, sendFeedbackBlock);
 
-            //foreach (ExtractionProxy extraction in result.Extractions.Extractions)
-            //{
-            //    Console.WriteLine("Entity: " + extraction.Entity);
-            //    Console.WriteLine("Name: " + extraction.Name);
-            //    Console.WriteLine("Value: " + extraction.Value);
-            //    Console.WriteLine("");
-            //}
-
-            //// Let's simulate the user correcting the total value
-
-            //int totalValueIndex = Array.FindIndex(result.Extractions.Extractions, extraction => extraction.Entity == "amount");
-            //result.Extractions.Extractions[totalValueIndex].Value = "45.50:EUR";
-
             //sendFeedbackBlock(result.Extractions);
         }
 

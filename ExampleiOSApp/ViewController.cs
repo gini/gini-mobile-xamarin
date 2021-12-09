@@ -16,13 +16,15 @@ namespace ExampleiOSApp
 
         public void CaptureAnalysisDidFinishWithoutResults(bool showingNoResultsScreen)
         {
-            this.PresentViewController(
-                ViewControllerHelper.GetViewController<NoResultsViewController>(), false, null);
+            var noResultsViewController = ViewControllerHelper.GetViewController<NoResultsViewController>();
+            PresentViewController(noResultsViewController, true, null);
         }
 
         public void CaptureAnalysisDidFinishWithResult(AnalysisResultProxy result, Action<ExtractionProxies> sendFeedbackBlock)
         {
-            
+            var filledResultsViewController = ViewControllerHelper.GetViewController<FilledResultsViewController>();
+            filledResultsViewController.Data = result;
+            PresentViewController(filledResultsViewController, true, null);
         }
 
         public void OnCaptureDidCancelAnalysis()

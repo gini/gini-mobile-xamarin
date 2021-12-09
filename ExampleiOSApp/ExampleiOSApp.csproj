@@ -159,6 +159,10 @@
           <DependentUpon>NoResultsViewController.cs</DependentUpon>
         </Compile>
         <Compile Include="Helpers\ViewControllerHelper.cs" />
+        <Compile Include="FilledResultsViewController.cs" />
+        <Compile Include="FilledResultsViewController.designer.cs">
+          <DependentUpon>FilledResultsViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Credentials.plist" />

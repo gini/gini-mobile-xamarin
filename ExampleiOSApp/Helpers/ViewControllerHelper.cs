@@ -5,12 +5,12 @@ namespace ExampleiOSApp.Helpers
 {
     public class ViewControllerHelper
     {
-        public static UIViewController GetViewController<T>()
+        public static T GetViewController<T>() where T : UIViewController
         {
             var storyboard = UIStoryboard.FromName("Main", null);
             var viewController = storyboard.InstantiateViewController(typeof(T).Name);
 
-            return viewController;
+            return (T)viewController;
         }
 
         public static UIViewController GetTopViewController()
