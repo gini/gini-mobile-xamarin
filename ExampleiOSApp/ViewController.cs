@@ -1,4 +1,5 @@
 ﻿using System;
+using ExampleiOSApp.Helpers;
 using GiniBank.iOS;
 using UIKit;
 
@@ -6,29 +7,32 @@ namespace ExampleiOSApp
 {
     public partial class ViewController : UIViewController
     {
-        private GiniBankSDKHelper _giniBankSDKHelper = new GiniBankSDKHelper();
-
         public ViewController(IntPtr handle) : base(handle)
         {
-            _giniBankSDKHelper.OnGiniCaptureAnalysisDidFinishWithoutResults += GiniCaptureAnalysisDidFinishWithoutResults;
-            _giniBankSDKHelper.OnGiniCaptureAnalysisDidFinishWithResult += GiniCaptureAnalysisDidFinishWithResult;
+            GiniBankSDKHelper.Instance.OnCaptureAnalysisDidFinishWithoutResults += CaptureAnalysisDidFinishWithoutResults;
+            GiniBankSDKHelper.Instance.OnCaptureAnalysisDidFinishWithResult += CaptureAnalysisDidFinishWithResult;
+            GiniBankSDKHelper.Instance.OnCaptureDidCancelAnalysis += OnCaptureDidCancelAnalysis;
         }
 
-        public void GiniCaptureAnalysisDidFinishWithoutResults(bool showingNoResultsScreen)
+        public void CaptureAnalysisDidFinishWithoutResults(bool showingNoResultsScreen)
         {
-            var r = 5;
-            // TODO: go to NO results page
+            this.PresentViewController(
+                ViewControllerHelper.GetViewController<NoResultsViewController>(), false, null);
         }
 
-        public void GiniCaptureAnalysisDidFinishWithResult(AnalysisResultProxy result, Action<ExtractionProxies> sendFeedbackBlock)
+        public void CaptureAnalysisDidFinishWithResult(AnalysisResultProxy result, Action<ExtractionProxies> sendFeedbackBlock)
         {
-            var r = 5;
-            // TODO: go to results page
+            
+        }
+
+        public void OnCaptureDidCancelAnalysis()
+        {
+            
         }
 
         partial void ButtonStartClick(Foundation.NSObject sender)
         {
-            _giniBankSDKHelper.Start(this);
+            GiniBankSDKHelper.Instance.Start(this);
         }
     }
 }

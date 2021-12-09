@@ -10,18 +10,33 @@ namespace ExampleiOSApp
     {
         private readonly GiniCaptureDelegate _gcDelegate;
         private readonly GiniConfigurationProxy _gConfiguration;
+        private GiniCaptureProxy _gcProxy;
+
+        private static GiniBankSDKHelper _instance;
+        public static GiniBankSDKHelper Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new GiniBankSDKHelper();
+                }
+
+                return _instance;
+            }
+        }
 
         /// <summary>
         /// showingNoResultsScreen
         /// </summary>
-        public Action<bool> OnGiniCaptureAnalysisDidFinishWithoutResults;
+        public Action<bool> OnCaptureAnalysisDidFinishWithoutResults;
 
         /// <summary>
         /// result, sendFeedbackBlock
         /// </summary>
-        public Action<AnalysisResultProxy, Action<ExtractionProxies>> OnGiniCaptureAnalysisDidFinishWithResult;
+        public Action<AnalysisResultProxy, Action<ExtractionProxies>> OnCaptureAnalysisDidFinishWithResult;
 
-        public Action OnGiniCaptureDidCancelAnalysis;
+        public Action OnCaptureDidCancelAnalysis;
 
         public GiniBankSDKHelper()
         {
@@ -41,7 +56,7 @@ namespace ExampleiOSApp
                 NavigationBarTitleFont = UIFont.FromName("Trebuchet MS", 20),
                 DocumentPickerNavigationBarTintColor = UIColor.Blue,
                 CloseButtonResource = new SimplePreferredButtonResource(null, "Close please"),
-                HelpButtonResource = new SimplePreferredButtonResource(UIImage.FromBundle("helpButton"), null),
+                HelpButtonResource = new SimplePreferredButtonResource(UIImage.FromBundle("Help"), null),
             };
 
             // You can change the order of the onboarding pages by getting the default pages and modifying the array
@@ -56,16 +71,19 @@ namespace ExampleiOSApp
 
         public void Start(UIViewController viewController)
         {
-            var credentials = CredentialsHelper.GetGiniBankCredentials();
+            if (_gcProxy == null)
+            {
+                var credentials = CredentialsHelper.GetGiniBankCredentials();
 
-            GiniCaptureProxy gcProxy = new GiniCaptureProxy(
-                credentials.clientDomain,
-                credentials.clientId,
-                credentials.clientPassword,
-                _gConfiguration,
-                _gcDelegate);
+                _gcProxy = new GiniCaptureProxy(
+                    credentials.clientDomain,
+                    credentials.clientId,
+                    credentials.clientPassword,
+                    _gConfiguration,
+                    _gcDelegate);
+            }
 
-            var gcViewController = gcProxy.ViewController;
+            var gcViewController = _gcProxy.ViewController;
             _gcDelegate.GCViewController = gcViewController;
 
             viewController.ShowViewController(gcViewController, null);
@@ -89,14 +107,16 @@ namespace ExampleiOSApp
 
             GCViewController.DismissViewController(true, null);
 
-            _giniBankSDKHelper.OnGiniCaptureAnalysisDidFinishWithoutResults?.Invoke(showingNoResultsScreen);
+            _giniBankSDKHelper.OnCaptureAnalysisDidFinishWithoutResults?.Invoke(showingNoResultsScreen);
         }
 
         public void GiniCaptureAnalysisDidFinishWithResult(AnalysisResultProxy result, Action<ExtractionProxies> sendFeedbackBlock)
         {
             Console.WriteLine("Extractions returned:");
 
-            _giniBankSDKHelper.OnGiniCaptureAnalysisDidFinishWithResult?.Invoke(result, sendFeedbackBlock);
+            GCViewController.DismissViewController(true, null);
+
+            _giniBankSDKHelper.OnCaptureAnalysisDidFinishWithResult?.Invoke(result, sendFeedbackBlock);
 
             //foreach (ExtractionProxy extraction in result.Extractions.Extractions)
             //{
@@ -105,8 +125,6 @@ namespace ExampleiOSApp
             //    Console.WriteLine("Value: " + extraction.Value);
             //    Console.WriteLine("");
             //}
-
-            //GCViewController.DismissViewController(true, null);
 
             //// Let's simulate the user correcting the total value
 
@@ -122,7 +140,7 @@ namespace ExampleiOSApp
 
             GCViewController.DismissViewController(true, null);
 
-            _giniBankSDKHelper.OnGiniCaptureDidCancelAnalysis?.Invoke();
+            _giniBankSDKHelper.OnCaptureDidCancelAnalysis?.Invoke();
         }
     }
 }

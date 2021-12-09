@@ -121,10 +121,19 @@
         <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
             <Visible>false</Visible>
         </ImageAsset>
+        <ImageAsset Include="Assets.xcassets\Help.imageset\Contents.json" />
+        <ImageAsset Include="Assets.xcassets\Help.imageset\Bitmap50h.png" />
+        <ImageAsset Include="Assets.xcassets\Help.imageset\Bitmap50h-1.png" />
+        <ImageAsset Include="Assets.xcassets\Help.imageset\Bitmap75h.png" />
+        <ImageAsset Include="Assets.xcassets\Gini.imageset\Contents.json" />
+        <ImageAsset Include="Assets.xcassets\Gini.imageset\ginipay_banksdk.png" />
+        <ImageAsset Include="Assets.xcassets\Gini.imageset\ginipay_banksdk-1.png" />
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Resources\" />
         <Folder Include="Helpers\" />
+        <Folder Include="Assets.xcassets\Help.imageset\" />
+        <Folder Include="Assets.xcassets\Gini.imageset\" />
     </ItemGroup>
     <ItemGroup>
         <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -145,6 +154,11 @@
         </Compile>
         <Compile Include="GiniBankSDKHelper.cs" />
         <Compile Include="Helpers\CredentialsHelper.cs" />
+        <Compile Include="NoResultsViewController.cs" />
+        <Compile Include="NoResultsViewController.designer.cs">
+          <DependentUpon>NoResultsViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Helpers\ViewControllerHelper.cs" />
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Credentials.plist" />
