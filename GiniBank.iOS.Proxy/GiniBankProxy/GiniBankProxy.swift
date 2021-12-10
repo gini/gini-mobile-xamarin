@@ -7,6 +7,7 @@
 
 import UIKit
 import Foundation
+import GiniBankSDK
 import GiniCaptureSDK
 import GiniBankAPILibrary
 
@@ -14,18 +15,154 @@ import GiniBankAPILibrary
 public class GiniSDKProxy: NSObject {
     
     private let giniSDK: GiniBankAPI
+    private let giniBank: GiniBank
     
     @objc public init(id: String, secret: String, domain: String) {
         
         let builder = GiniBankAPI.Builder(client: Client(id: id, secret: secret, domain: domain))
         
         giniSDK = builder.build()
+        giniBank = GiniBank(with: giniSDK);
         
         super.init()
     }
         
     @objc public func removeStoredCredentials() {
         try? giniSDK.removeStoredCredentials()
+    }
+    
+    @objc public func resolvePaymentRequest(
+        paymentRequesId: String,
+        paymentInfo: PaymentInfoProxy,
+        onSuccess: @escaping () -> Void,
+        onFailure: @escaping (String) -> Void) {
+            
+        let paymentInfo = PaymentInfo(
+            recipient: paymentInfo.recipient,
+            iban: paymentInfo.iban,
+            bic: paymentInfo.bic,
+            amount: paymentInfo.amount,
+            purpose: paymentInfo.purpose)
+            
+        giniBank.resolvePaymentRequest(
+            paymentRequesId: paymentRequesId,
+            paymentInfo: paymentInfo) { [weak self] result in
+                    switch result {
+                    case .success(let resolvedPaymentRequest):
+                        onSuccess()
+                    case .failure(let error):
+                        switch(error) {
+                        case .noRequestId:
+                            onFailure("no RequestId");
+                        case .apiError(let apiError):
+                            onFailure(apiError.message);
+                        }
+                    }
+                }
+    }
+    
+    @objc public func receivePaymentRequest(
+        paymentRequesId: String,
+        onSuccess: @escaping (PaymentInfoProxy) -> Void,
+        onFailure: @escaping (String) -> Void) {
+            
+        giniBank.receivePaymentRequest(paymentRequestId: paymentRequesId) { [weak self] result in
+                        switch result {
+                        case let .success(paymentRequest):
+                            let paymentInfo = PaymentInfoProxy(
+                                recipient: paymentRequest.recipient,
+                                iban: paymentRequest.iban,
+                                bic: paymentRequest.bic,
+                                amount: paymentRequest.amount,
+                                purpose: paymentRequest.purpose)
+                            onSuccess(paymentInfo)
+                        case let .failure(error):
+                            switch(error) {
+                            case .noRequestId:
+                                onFailure("no RequestId");
+                            case .apiError(let apiError):
+                                onFailure(apiError.message);
+                            }
+                        }
+                    }
+    }
+    
+    @objc public func returnBackToBusinessAppHandler(resolvedPaymentRequest:  ResolvedPaymentRequestProxy) {
+       
+// TODO: add bic       "bic": "\(String(describing: resolvedPaymentRequest.bic))",
+        
+        let json = """
+            {
+                "requesterUri": "\(resolvedPaymentRequest.requesterUri)",
+                "iban": "\(resolvedPaymentRequest.iban)",
+                "amount": "\(resolvedPaymentRequest.amount)",
+                "status": "\(resolvedPaymentRequest.status)",
+                "purpose": "\(resolvedPaymentRequest.purpose)",
+                "recipient": "\(resolvedPaymentRequest.recipient)",
+                "createdAt": "\(resolvedPaymentRequest.createdAt)"
+            }
+        """
+        
+        let jsonData = json.data(using: .utf8)!
+        let decoder = JSONDecoder()
+        let resolvedPaymentRequest = try! decoder.decode(ResolvedPaymentRequest.self, from: jsonData)
+        
+        giniBank.returnBackToBusinessAppHandler(
+            resolvedPaymentRequest: resolvedPaymentRequest);
+    }
+}
+
+@objc(ResolvedPaymentRequestProxy)
+public class ResolvedPaymentRequestProxy: NSObject {
+    @objc public let requesterUri: String
+    @objc public let iban: String
+    @objc public let bic: String?
+    @objc public let amount: String
+    @objc public let status: String
+    @objc public let purpose: String
+    @objc public let recipient: String
+    @objc public let createdAt: String
+    
+    @objc public init(
+        requesterUri: String,
+        iban: String,
+        bic: String?,
+        amount: String,
+        status: String,
+        purpose: String,
+        recipient: String,
+        createdAt: String) {
+        
+        self.requesterUri = requesterUri
+        self.iban = iban
+        self.bic = bic
+        self.amount = amount
+        self.status = status
+        self.purpose = purpose
+        self.recipient = recipient
+        self.createdAt = createdAt
+        
+        super.init()
+    }
+}
+
+@objc(PaymentInfoProxy)
+public class PaymentInfoProxy: NSObject {
+    @objc public let recipient: String
+    @objc public let iban: String
+    @objc public let bic: String?
+    @objc public let amount: String
+    @objc public let purpose: String
+    
+    @objc public init(recipient: String, iban: String, bic: String?, amount: String, purpose: String) {
+        
+        self.recipient = recipient
+        self.iban = iban
+        self.bic = bic
+        self.amount = amount
+        self.purpose = purpose
+        
+        super.init()
     }
 }
 

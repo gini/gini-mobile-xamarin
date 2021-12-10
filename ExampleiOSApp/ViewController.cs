@@ -35,6 +35,10 @@ namespace ExampleiOSApp
         partial void ButtonStartClick(Foundation.NSObject sender)
         {
             GiniBankSDKHelper.Instance.Start(this);
+
+            // TODO: handle and navigate on app start
+            //var payViewController = ViewControllerHelper.GetViewController<PayViewController>();
+            //PresentViewController(payViewController, true, null);
         }
     }
 }

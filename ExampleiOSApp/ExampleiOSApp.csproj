@@ -163,6 +163,10 @@
         <Compile Include="FilledResultsViewController.designer.cs">
           <DependentUpon>FilledResultsViewController.cs</DependentUpon>
         </Compile>
+        <Compile Include="PayViewController.cs" />
+        <Compile Include="PayViewController.designer.cs">
+          <DependentUpon>PayViewController.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="Credentials.plist" />

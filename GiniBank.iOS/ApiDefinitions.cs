@@ -247,6 +247,92 @@ namespace GiniBank.iOS
 		// -(void)removeStoredCredentials;
 		[Export ("removeStoredCredentials")]
 		void RemoveStoredCredentials ();
+
+		// -(void)resolvePaymentRequestWithPaymentRequesId:(NSString * _Nonnull)paymentRequesId paymentInfo:(PaymentInfoProxy * _Nonnull)paymentInfo onSuccess:(void (^ _Nonnull)(void))onSuccess onFailure:(void (^ _Nonnull)(NSString * _Nonnull))onFailure;
+		[Export ("resolvePaymentRequestWithPaymentRequesId:paymentInfo:onSuccess:onFailure:")]
+		void ResolvePaymentRequestWithPaymentRequesId (string paymentRequesId, PaymentInfoProxy paymentInfo, Action onSuccess, Action<NSString> onFailure);
+
+		// -(void)receivePaymentRequestWithPaymentRequesId:(NSString * _Nonnull)paymentRequesId onSuccess:(void (^ _Nonnull)(PaymentInfoProxy * _Nonnull))onSuccess onFailure:(void (^ _Nonnull)(NSString * _Nonnull))onFailure;
+		[Export ("receivePaymentRequestWithPaymentRequesId:onSuccess:onFailure:")]
+		void ReceivePaymentRequestWithPaymentRequesId (string paymentRequesId, Action<PaymentInfoProxy> onSuccess, Action<NSString> onFailure);
+
+		// -(void)returnBackToBusinessAppHandlerWithResolvedPaymentRequest:(ResolvedPaymentRequestProxy * _Nonnull)resolvedPaymentRequest;
+		[Export ("returnBackToBusinessAppHandlerWithResolvedPaymentRequest:")]
+		void ReturnBackToBusinessAppHandlerWithResolvedPaymentRequest (ResolvedPaymentRequestProxy resolvedPaymentRequest);
+	}
+
+	// @interface PaymentInfoProxy : NSObject
+	[BaseType (typeof(NSObject))]
+	[DisableDefaultCtor]
+	interface PaymentInfoProxy
+	{
+		// @property (readonly, copy, nonatomic) NSString * _Nonnull recipient;
+		[Export ("recipient")]
+		string Recipient { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nonnull iban;
+		[Export ("iban")]
+		string Iban { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nullable bic;
+		[NullAllowed, Export ("bic")]
+		string Bic { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nonnull amount;
+		[Export ("amount")]
+		string Amount { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nonnull purpose;
+		[Export ("purpose")]
+		string Purpose { get; }
+
+		// -(instancetype _Nonnull)initWithRecipient:(NSString * _Nonnull)recipient iban:(NSString * _Nonnull)iban bic:(NSString * _Nullable)bic amount:(NSString * _Nonnull)amount purpose:(NSString * _Nonnull)purpose __attribute__((objc_designated_initializer));
+		[Export ("initWithRecipient:iban:bic:amount:purpose:")]
+		[DesignatedInitializer]
+		IntPtr Constructor (string recipient, string iban, [NullAllowed] string bic, string amount, string purpose);
+	}
+
+	// @interface ResolvedPaymentRequestProxy : NSObject
+	[BaseType (typeof(NSObject))]
+	[DisableDefaultCtor]
+	interface ResolvedPaymentRequestProxy
+	{
+		// @property (readonly, copy, nonatomic) NSString * _Nonnull requesterUri;
+		[Export ("requesterUri")]
+		string RequesterUri { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nonnull iban;
+		[Export ("iban")]
+		string Iban { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nullable bic;
+		[NullAllowed, Export ("bic")]
+		string Bic { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nonnull amount;
+		[Export ("amount")]
+		string Amount { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nonnull status;
+		[Export ("status")]
+		string Status { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nonnull purpose;
+		[Export ("purpose")]
+		string Purpose { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nonnull recipient;
+		[Export ("recipient")]
+		string Recipient { get; }
+
+		// @property (readonly, copy, nonatomic) NSString * _Nonnull createdAt;
+		[Export ("createdAt")]
+		string CreatedAt { get; }
+
+		// -(instancetype _Nonnull)initWithRequesterUri:(NSString * _Nonnull)requesterUri iban:(NSString * _Nonnull)iban bic:(NSString * _Nullable)bic amount:(NSString * _Nonnull)amount status:(NSString * _Nonnull)status purpose:(NSString * _Nonnull)purpose recipient:(NSString * _Nonnull)recipient createdAt:(NSString * _Nonnull)createdAt __attribute__((objc_designated_initializer));
+		[Export ("initWithRequesterUri:iban:bic:amount:status:purpose:recipient:createdAt:")]
+		[DesignatedInitializer]
+		IntPtr Constructor (string requesterUri, string iban, [NullAllowed] string bic, string amount, string status, string purpose, string recipient, string createdAt);
 	}
 
 	// @interface SimplePreferredButtonResource : NSObject

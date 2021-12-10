@@ -46,6 +46,7 @@
                         <outlet property="ButtonStart" destination="ME3-eM-uwQ" id="cgB-nI-oMp"/>
                         <segue destination="TlO-oS-12z" kind="show" id="Uyg-Rs-0f8"/>
                         <segue destination="bZB-u5-gji" kind="show" id="k4E-e3-qOA"/>
+                        <segue destination="nRd-fz-QXN" kind="show" id="z62-Dp-gnr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -193,6 +194,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vDy-Th-fgC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1403" y="6"/>
+        </scene>
+        <!--Pay View Controller-->
+        <scene sceneID="VgH-yk-fWx">
+            <objects>
+                <viewController storyboardIdentifier="PayViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nRd-fz-QXN" customClass="PayViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="z9B-GM-5as"/>
+                        <viewControllerLayoutGuide type="bottom" id="SQE-J2-4jD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="I9a-4N-bzh">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="VPq-bK-b3N"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WMw-iJ-bD4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2079" y="6"/>
         </scene>
     </scenes>
     <resources>

@@ -31,6 +31,36 @@
 			</array>
 		</dict>
 	</dict>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>PDF</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.adobe.pdf</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>Images</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.jpeg</string>
+				<string>public.png</string>
+				<string>public.tiff</string>
+				<string>com.compuserve.gif</string>
+			</array>
+		</dict>
+	</array>
 	<key>MinimumOSVersion</key>
 	<string>12.0</string>
 	<key>UIDeviceFamily</key>
@@ -66,6 +96,29 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Um Dokumente mit deinem Gerät zu scannen, erlaube den Zugriff auf deine Kamera.  📸 -&amp;gt; 📄 -&amp;gt; 🎉</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>asfasfasf</string>
+	<string>Um Dokumente auf deinem Gerät zu scannen, erlaube den Zugriff auf deine Fotos  🏞 -&gt; 📄 -&gt; 🎉</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Um Dokumente auf deinem Gerät zu scannen, erlaube den Zugriff auf deine Fotos  🏞 -&gt; 📄 -&gt; 🎉</string>
+	<key>UISupportsDocumentBrowser</key>
+	<true/>
+	<key>Application supports indirect input events</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>developer.gini.net</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
 </dict>
 </plist>
