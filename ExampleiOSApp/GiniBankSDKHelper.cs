@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using ExampleiOSApp.Helpers;
 using Foundation;
 using GiniBank.iOS;
@@ -37,6 +38,24 @@ namespace ExampleiOSApp
         public Action<AnalysisResultProxy, Action<ExtractionProxies>> OnCaptureAnalysisDidFinishWithResult;
 
         public Action OnCaptureDidCancelAnalysis;
+
+        public static Task<string> ReceivePaymentRequestIdFromUrlAsync(NSUrl url)
+        {
+            TaskCompletionSource<string> tcs = new TaskCompletionSource<string>();
+
+            GiniSDKProxy.ReceivePaymentRequestIdFromUrlWithUrl(url,
+                (paymentRequestId) =>
+                {
+                    tcs.SetResult(paymentRequestId);
+                },
+                (error) =>
+                {
+                    Console.WriteLine($"ReceivePaymentRequestIdFromUrlWithUrl error: {error}");
+                    tcs.SetResult(null);
+                });
+
+            return tcs.Task;
+        }
 
         public GiniBankSDKHelper()
         {

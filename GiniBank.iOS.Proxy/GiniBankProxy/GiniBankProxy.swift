@@ -31,6 +31,26 @@ public class GiniSDKProxy: NSObject {
         try? giniSDK.removeStoredCredentials()
     }
     
+    @objc public static func receivePaymentRequestIdFromUrl(
+        url: URL,
+        onSuccess: @escaping (String) -> Void,
+        onFailure: @escaping (String) -> Void) {
+        
+        receivePaymentRequestId(url: url) { result in
+            switch result {
+            case let .success(requestId):
+                onSuccess(requestId);
+            case let .failure(error):
+                switch(error) {
+                case .noRequestId:
+                    onFailure("no RequestId");
+                case .apiError(let apiError):
+                    onFailure(apiError.message);
+                }
+            }
+        }
+    }
+    
     @objc public func resolvePaymentRequest(
         paymentRequesId: String,
         paymentInfo: PaymentInfoProxy,

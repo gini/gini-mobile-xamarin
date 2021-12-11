@@ -14,6 +14,18 @@ namespace ExampleiOSApp
             GiniBankSDKHelper.Instance.OnCaptureDidCancelAnalysis += OnCaptureDidCancelAnalysis;
         }
 
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+
+            // Go to Pay page if navigated by scheme like "ginipay-bank://blablabla?id=blablabla"
+            if (!string.IsNullOrWhiteSpace(PayViewController.PaymentRequestId))
+            {
+                var payViewController = ViewControllerHelper.GetViewController<PayViewController>();
+                PresentViewController(payViewController, true, null);
+            }
+        }
+
         public void CaptureAnalysisDidFinishWithoutResults(bool showingNoResultsScreen)
         {
             var noResultsViewController = ViewControllerHelper.GetViewController<NoResultsViewController>();
@@ -35,10 +47,6 @@ namespace ExampleiOSApp
         partial void ButtonStartClick(Foundation.NSObject sender)
         {
             GiniBankSDKHelper.Instance.Start(this);
-
-            // TODO: handle and navigate on app start
-            //var payViewController = ViewControllerHelper.GetViewController<PayViewController>();
-            //PresentViewController(payViewController, true, null);
         }
     }
 }

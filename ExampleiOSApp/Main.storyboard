@@ -206,13 +206,73 @@
                     <view key="view" contentMode="scaleToFill" id="I9a-4N-bzh">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GdZ-7O-rO7">
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipient" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vWh-1J-lN1">
+                                        <rect key="frame" x="44" y="27" width="341" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="IBAN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HMW-dn-npS">
+                                        <rect key="frame" x="44" y="69" width="207" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3ym-uN-XwG">
+                                        <rect key="frame" x="271" y="69" width="114" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Purpose" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OHB-v7-qo6">
+                                        <rect key="frame" x="44" y="111" width="341" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iTq-Io-Xgw">
+                                        <rect key="frame" x="143" y="153" width="142" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Pay"/>
+                                        <connections>
+                                            <action selector="Pay:" destination="nRd-fz-QXN" eventType="touchUpInside" id="6m2-Va-vp0"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Us0-Er-fu9">
+                                        <rect key="frame" x="106" y="192" width="217" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Go to business app"/>
+                                        <connections>
+                                            <action selector="GoToBusinessApp:" destination="nRd-fz-QXN" eventType="touchUpInside" id="2ah-46-kuF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <viewLayoutGuide key="contentLayoutGuide" id="eEl-Da-M6g"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="6an-K5-ifY"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="VPq-bK-b3N"/>
+                    <connections>
+                        <outlet property="buttonGoToBusinessApp" destination="Us0-Er-fu9" id="KVP-Gb-HKw"/>
+                        <outlet property="buttonPay" destination="iTq-Io-Xgw" id="2VL-Fl-jp1"/>
+                        <outlet property="textFieldAmount" destination="3ym-uN-XwG" id="ij5-No-DDl"/>
+                        <outlet property="textFieldIBAN" destination="HMW-dn-npS" id="O9K-h4-GFR"/>
+                        <outlet property="textFieldPurpose" destination="OHB-v7-qo6" id="ER2-fT-CII"/>
+                        <outlet property="textFieldRecipient" destination="vWh-1J-lN1" id="RbF-5s-MB6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WMw-iJ-bD4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2079" y="6"/>
+            <point key="canvasLocation" x="2076.1682242990655" y="5.8315334773218144"/>
         </scene>
     </scenes>
     <resources>

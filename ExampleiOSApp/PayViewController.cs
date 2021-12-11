@@ -8,7 +8,10 @@ namespace ExampleiOSApp
 	public partial class PayViewController : UIViewController
 	{
         private GiniSDKProxy _giniSDK;
+        private PaymentInfoProxy _paymentInfo;
         private ResolvedPaymentRequestProxy _resolvedPaymentRequest;
+
+        public static string PaymentRequestId { get; set; }
 
         public PayViewController (IntPtr handle) : base (handle)
 		{
@@ -24,30 +27,56 @@ namespace ExampleiOSApp
                     credentials.clientId,
                     credentials.clientPassword);
 
-            _giniSDK.ReceivePaymentRequestWithPaymentRequesId("1",
-                ReceivedPaymentRequestSuccess,
-                (error) => Console.WriteLine(error));
+            _giniSDK.ReceivePaymentRequestWithPaymentRequesId(PaymentRequestId,
+                (paymentInfo) =>
+                {
+                    Console.WriteLine(paymentInfo);
+                    _paymentInfo = paymentInfo;
+
+                    textFieldRecipient.Text = _paymentInfo.Recipient;
+                    textFieldIBAN.Text = _paymentInfo.Iban;
+                    textFieldAmount.Text = _paymentInfo.Amount;
+                    textFieldPurpose.Text = _paymentInfo.Purpose;
+
+                    buttonPay.Hidden = false;
+                },
+                (error) =>
+                {
+                    Console.WriteLine(error);
+                    var errorAlertController = UIAlertController.Create($"ReceivePaymentRequestWithPaymentRequesId:{PaymentRequestId}", error, UIAlertControllerStyle.Alert);
+                    errorAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                    PresentViewController(errorAlertController, true, null);
+                });
         }
 
-        private void ReceivedPaymentRequestSuccess(PaymentInfoProxy paymentInfo)
+        partial void Pay(Foundation.NSObject sender)
         {
-            Console.WriteLine(paymentInfo);
+            var updatedPaymentInfo = new PaymentInfoProxy(
+                textFieldRecipient.Text,
+                textFieldIBAN.Text,
+                _paymentInfo.Bic,
+                textFieldAmount.Text,
+                textFieldPurpose.Text);
 
-            _giniSDK.ResolvePaymentRequestWithPaymentRequesId("1", paymentInfo,
-                ResolvedPaymentRequestSuccess,
-                (error) => Console.WriteLine(error));
+            _giniSDK.ResolvePaymentRequestWithPaymentRequesId(PaymentRequestId, updatedPaymentInfo,
+              (resolvedPaymentRequest) =>
+              {
+                  Console.WriteLine(resolvedPaymentRequest);
+                  _resolvedPaymentRequest = resolvedPaymentRequest;
+
+                  buttonPay.Hidden = true;
+                  buttonGoToBusinessApp.Hidden = false;
+              },
+              (error) =>
+              {
+                  Console.WriteLine(error);
+                  var errorAlertController = UIAlertController.Create($"ResolvePaymentRequestWithPaymentRequesId:{PaymentRequestId}", error, UIAlertControllerStyle.Alert);
+                  errorAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                  PresentViewController(errorAlertController, true, null);
+              });
         }
 
-        private void ResolvedPaymentRequestSuccess(ResolvedPaymentRequestProxy resolvedPaymentRequest)
-        {
-            Console.WriteLine($"ResolvedPaymentRequestSuccess: {resolvedPaymentRequest}");
-
-            _resolvedPaymentRequest = resolvedPaymentRequest;
-
-            // TODO: show button "back to init app"
-        }
-
-        public void GoToInitApp()
+        partial void GoToBusinessApp(Foundation.NSObject sender)
         {
             _giniSDK.ReturnBackToBusinessAppHandlerWithResolvedPaymentRequest(_resolvedPaymentRequest);
         }
