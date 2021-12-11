@@ -9,9 +9,9 @@ namespace ExampleiOSApp
 {
     public class GiniBankSDKHelper
     {
-        private readonly GiniCaptureDelegate _gcDelegate;
         private readonly GiniConfigurationProxy _gConfiguration;
         private GiniCaptureProxy _gcProxy;
+        private GiniCaptureDelegate _gcDelegate;
 
         private static GiniBankSDKHelper _instance;
         public static GiniBankSDKHelper Instance
@@ -59,8 +59,6 @@ namespace ExampleiOSApp
 
         public GiniBankSDKHelper()
         {
-            _gcDelegate = new GiniCaptureDelegate(this);
-
             _gConfiguration = new GiniConfigurationProxy
             {
                 DebugModeOn = true,
@@ -90,17 +88,23 @@ namespace ExampleiOSApp
 
         public void Start(UIViewController viewController)
         {
-            if (_gcProxy == null)
+            if (_gcDelegate != null)
             {
-                var credentials = CredentialsHelper.GetGiniBankCredentials();
-
-                _gcProxy = new GiniCaptureProxy(
-                    credentials.clientDomain,
-                    credentials.clientId,
-                    credentials.clientPassword,
-                    _gConfiguration,
-                    _gcDelegate);
+                _gcDelegate.Dispose();
+                _gcProxy.Dispose();
             }
+
+            _gcDelegate = new GiniCaptureDelegate(this);
+
+            var credentials = CredentialsHelper.GetGiniBankCredentials();
+
+            _gcProxy = new GiniCaptureProxy(
+                credentials.clientDomain,
+                credentials.clientId,
+                credentials.clientPassword,
+                _gConfiguration,
+                _gcDelegate);
+
 
             var gcViewController = _gcProxy.ViewController;
             _gcDelegate.GCViewController = gcViewController;
