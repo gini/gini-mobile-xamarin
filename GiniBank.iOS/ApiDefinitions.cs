@@ -248,9 +248,9 @@ namespace GiniBank.iOS
 		[Export ("removeStoredCredentials")]
 		void RemoveStoredCredentials ();
 
-		// -(void)resolvePaymentRequestWithPaymentRequesId:(NSString * _Nonnull)paymentRequesId paymentInfo:(PaymentInfoProxy * _Nonnull)paymentInfo onSuccess:(void (^ _Nonnull)(void))onSuccess onFailure:(void (^ _Nonnull)(NSString * _Nonnull))onFailure;
+		// -(void)resolvePaymentRequestWithPaymentRequesId:(NSString * _Nonnull)paymentRequesId paymentInfo:(PaymentInfoProxy * _Nonnull)paymentInfo onSuccess:(void (^ _Nonnull)(ResolvedPaymentRequestProxy * _Nonnull))onSuccess onFailure:(void (^ _Nonnull)(NSString * _Nonnull))onFailure;
 		[Export ("resolvePaymentRequestWithPaymentRequesId:paymentInfo:onSuccess:onFailure:")]
-		void ResolvePaymentRequestWithPaymentRequesId (string paymentRequesId, PaymentInfoProxy paymentInfo, Action onSuccess, Action<NSString> onFailure);
+		void ResolvePaymentRequestWithPaymentRequesId (string paymentRequesId, PaymentInfoProxy paymentInfo, Action<ResolvedPaymentRequestProxy> onSuccess, Action<NSString> onFailure);
 
 		// -(void)receivePaymentRequestWithPaymentRequesId:(NSString * _Nonnull)paymentRequesId onSuccess:(void (^ _Nonnull)(PaymentInfoProxy * _Nonnull))onSuccess onFailure:(void (^ _Nonnull)(NSString * _Nonnull))onFailure;
 		[Export ("receivePaymentRequestWithPaymentRequesId:onSuccess:onFailure:")]

@@ -34,7 +34,7 @@ public class GiniSDKProxy: NSObject {
     @objc public func resolvePaymentRequest(
         paymentRequesId: String,
         paymentInfo: PaymentInfoProxy,
-        onSuccess: @escaping () -> Void,
+        onSuccess: @escaping (ResolvedPaymentRequestProxy) -> Void,
         onFailure: @escaping (String) -> Void) {
             
         let paymentInfo = PaymentInfo(
@@ -49,7 +49,16 @@ public class GiniSDKProxy: NSObject {
             paymentInfo: paymentInfo) { [weak self] result in
                     switch result {
                     case .success(let resolvedPaymentRequest):
-                        onSuccess()
+                        let resolvedPaymentRequestProxy = ResolvedPaymentRequestProxy(
+                            requesterUri: resolvedPaymentRequest.requesterUri,
+                            iban: resolvedPaymentRequest.iban,
+                            bic: resolvedPaymentRequest.bic,
+                            amount: resolvedPaymentRequest.amount,
+                            status: resolvedPaymentRequest.status,
+                            purpose: resolvedPaymentRequest.purpose,
+                            recipient: resolvedPaymentRequest.recipient,
+                            createdAt: resolvedPaymentRequest.createdAt);
+                        onSuccess(resolvedPaymentRequestProxy);
                     case .failure(let error):
                         switch(error) {
                         case .noRequestId:
@@ -59,6 +68,7 @@ public class GiniSDKProxy: NSObject {
                         }
                     }
                 }
+          
     }
     
     @objc public func receivePaymentRequest(
@@ -89,12 +99,16 @@ public class GiniSDKProxy: NSObject {
     
     @objc public func returnBackToBusinessAppHandler(resolvedPaymentRequest:  ResolvedPaymentRequestProxy) {
        
-// TODO: add bic       "bic": "\(String(describing: resolvedPaymentRequest.bic))",
+        var bicJsonValue : String = "null";
+        if resolvedPaymentRequest.bic != nil && resolvedPaymentRequest.bic?.isEmpty == false {
+            bicJsonValue = "\"\(resolvedPaymentRequest.bic!)\"";
+        }
         
         let json = """
             {
                 "requesterUri": "\(resolvedPaymentRequest.requesterUri)",
                 "iban": "\(resolvedPaymentRequest.iban)",
+                "bic": \(bicJsonValue),
                 "amount": "\(resolvedPaymentRequest.amount)",
                 "status": "\(resolvedPaymentRequest.status)",
                 "purpose": "\(resolvedPaymentRequest.purpose)",
