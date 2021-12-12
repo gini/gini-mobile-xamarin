@@ -20,18 +20,6 @@ namespace ExampleiOSApp
             return true;
         }
 
-        [Export("application:handleOpenURL:")]
-        public bool HandleOpenURL(UIApplication application, NSUrl url)
-        {
-            var paymentRequestId = GiniBankSDKHelper.ReceivePaymentRequestIdFromUrlAsync(url).Result;
-            if (!string.IsNullOrWhiteSpace(paymentRequestId))
-            {
-                PayViewController.PaymentRequestId = paymentRequestId;
-            }
-
-            return true;
-        }
-
         // UISceneSession Lifecycle
 
         [Export("application:configurationForConnectingSceneSession:options:")]

@@ -18,11 +18,9 @@ namespace ExampleiOSApp
         {
             base.ViewDidAppear(animated);
 
-            // Go to Pay page if navigated by scheme like "ginipay-bank://blablabla?id=blablabla"
             if (!string.IsNullOrWhiteSpace(PayViewController.PaymentRequestId))
             {
-                var payViewController = ViewControllerHelper.GetViewController<PayViewController>();
-                PresentViewController(payViewController, true, null);
+                GoToPayPage();
             }
         }
 
@@ -47,6 +45,12 @@ namespace ExampleiOSApp
         partial void ButtonStartClick(Foundation.NSObject sender)
         {
             GiniBankSDKHelper.Instance.Start(this);
+        }
+
+        public void GoToPayPage()
+        {
+            var payViewController = ViewControllerHelper.GetViewController<PayViewController>();
+            PresentViewController(payViewController, true, null);
         }
     }
 }

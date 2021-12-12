@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExampleiOSApp;
+using ExampleiOSApp.Helpers;
 using Foundation;
 using UIKit;
 
@@ -7,15 +8,57 @@ namespace NewSingleViewTemplate
     [Register("SceneDelegate")]
     public class SceneDelegate : UIResponder, IUIWindowSceneDelegate
     {
+        // handle url like "ginipay-bank://blablabla?id=blablabla"
+        private void HandleGiniPayBankScheme(NSUrl url)
+        {
+            if (url.ToString().StartsWith("ginipay-bank://"))
+            {
+                var paymentRequestId = GiniBankSDKHelper.ReceivePaymentRequestIdFromUrlAsync(url).Result;
+                if (!string.IsNullOrWhiteSpace(paymentRequestId))
+                {
+                    PayViewController.PaymentRequestId = paymentRequestId;
+                }
+
+                try
+                {
+                    var topController = ViewControllerHelper.GetTopViewController();
+                    if (topController is ViewController)
+                    {
+                        (topController as ViewController).GoToPayPage();
+                    }
+                }
+                catch
+                {
+                    // crash if run on startup
+                }
+            }
+        }
+
         [Export("window")]
         public UIWindow Window { get; set; }
+
+        [Export("scene:openURLContexts:")]
+        public void OpenUrlContexts(UIScene scene, NSSet<UIOpenUrlContext> urlContexts)
+        {
+            var url = urlContexts?.AnyObject?.Url;
+            if (url == null)
+            {
+                return;
+            }
+
+            HandleGiniPayBankScheme(url);
+        }
 
         [Export("scene:willConnectToSession:options:")]
         public void WillConnect(UIScene scene, UISceneSession session, UISceneConnectionOptions connectionOptions)
         {
-            // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-            // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-            // This delegate does not imply the connecting scene or session are new (see UIApplicationDelegate `GetConfiguration` instead).
+            var url = connectionOptions.UrlContexts?.AnyObject?.Url;
+            if (url == null)
+            {
+                return;
+            }
+
+            HandleGiniPayBankScheme(url);
         }
 
         [Export("sceneDidDisconnect:")]
