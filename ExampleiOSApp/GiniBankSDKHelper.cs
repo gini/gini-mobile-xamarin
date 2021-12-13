@@ -57,10 +57,33 @@ namespace ExampleiOSApp
             return tcs.Task;
         }
 
+        public static Task<GiniCaptureDocumentProxy> BuildImportedDocumentWithAsync(NSUrl url)
+        {
+            TaskCompletionSource<GiniCaptureDocumentProxy> tcs = new TaskCompletionSource<GiniCaptureDocumentProxy>();
+
+            var documentBuilder = new GiniCaptureDocumentBuilderProxy();
+
+            try
+            {
+                documentBuilder.BuildWith(url,
+                    (document) =>
+                    {
+                        tcs.SetResult(document);
+                    });
+            }
+            catch (Exception ex)
+            {
+                tcs.SetResult(null);
+            }
+
+            return tcs.Task;
+        }
+
         public GiniBankSDKHelper()
         {
             _gConfiguration = new GiniConfigurationProxy
             {
+                OpenWithEnabled = true,
                 DebugModeOn = true,
                 FileImportSupportedTypes = GiniCaptureImportFileTypesProxy.Pdf_and_images,
                 QrCodeScanningEnabled = true,
@@ -86,7 +109,7 @@ namespace ExampleiOSApp
             _gConfiguration.OnboardingPages = pages;
         }
 
-        public void Start(UIViewController viewController)
+        public void Start(UIViewController viewController, GiniCaptureDocumentProxy importedDocument = null)
         {
             if (_gcDelegate != null)
             {
@@ -103,7 +126,8 @@ namespace ExampleiOSApp
                 credentials.clientId,
                 credentials.clientPassword,
                 _gConfiguration,
-                _gcDelegate);
+                _gcDelegate,
+                importedDocument);
 
 
             var gcViewController = _gcProxy.ViewController;

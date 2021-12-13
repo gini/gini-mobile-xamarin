@@ -245,7 +245,8 @@ public class GiniCaptureProxy : NSObject {
                 id: String,
                 secret: String,
                 configuration: GiniConfigurationProxy?,
-                delegate: GiniCaptureProxyDelegate) {
+                delegate: GiniCaptureProxyDelegate,
+                importedDocument: GiniCaptureDocumentProxy? = nil) {
         
         self.client = Client(id: id, secret: secret, domain: domain)
         self.resultsDelegate = ResultsDelegate()
@@ -259,9 +260,29 @@ public class GiniCaptureProxy : NSObject {
             giniConfiguration = GiniConfiguration()
         }
         
-        self.viewController = GiniCapture.viewController(withClient: Client(id: id, secret: secret, domain: domain),
-                                                        configuration: giniConfiguration,
-                                                        resultsDelegate: resultsDelegate)
+        if importedDocument == nil
+        {
+            self.viewController = GiniCapture.viewController(
+                withClient: Client(id: id, secret: secret, domain: domain),
+                configuration: giniConfiguration,
+                resultsDelegate: resultsDelegate)
+        }
+        else {
+            
+            var importedDocuments = [GiniCaptureDocument]()
+            
+            let documentBuilder = GiniCaptureDocumentBuilder(documentSource: .appName(name: nil))
+            documentBuilder.importMethod = .openWith
+            
+            let giniCaptureDocument = documentBuilder.build(with: importedDocument!.data)
+            importedDocuments.append(giniCaptureDocument!)
+           
+            self.viewController = GiniCapture.viewController(
+                withClient: Client(id: id, secret: secret, domain: domain),
+                importedDocuments: importedDocuments,
+                configuration: giniConfiguration,
+                resultsDelegate: resultsDelegate)
+        }
         
         super.init()
     }

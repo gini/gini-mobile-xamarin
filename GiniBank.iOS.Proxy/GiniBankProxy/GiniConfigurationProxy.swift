@@ -11,7 +11,7 @@ import GiniCaptureSDK
 
 @objc(GiniConfigurationProxy)
 public class GiniConfigurationProxy: NSObject {
-    
+
     @objc public var debugModeOn = false
     @objc public var fileImportSupportedTypes: GiniConfigurationProxy.GiniCaptureImportFileTypesProxy = .none
     @objc public var flashToggleEnabled = false

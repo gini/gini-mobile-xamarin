@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Threading;
 using ExampleiOSApp.Helpers;
+using Foundation;
 using GiniBank.iOS;
 using UIKit;
 
@@ -18,9 +20,14 @@ namespace ExampleiOSApp
         {
             base.ViewDidAppear(animated);
 
-            if (!string.IsNullOrWhiteSpace(PayViewController.PaymentRequestId))
+            if (!string.IsNullOrWhiteSpace(SceneDelegate.PaymentRequestId))
             {
                 GoToPayPage();
+            }
+
+            if (SceneDelegate.ImportedDocumentUrl != null)
+            {
+                Start(SceneDelegate.ImportedDocumentUrl);
             }
         }
 
@@ -44,7 +51,20 @@ namespace ExampleiOSApp
 
         partial void ButtonStartClick(Foundation.NSObject sender)
         {
-            GiniBankSDKHelper.Instance.Start(this);
+            Start();
+        }
+
+        public async void Start(NSUrl ImportedDocumentUrl = null)
+        {
+            if (ImportedDocumentUrl != null)
+            {
+                var document = await GiniBankSDKHelper.BuildImportedDocumentWithAsync(ImportedDocumentUrl);
+                GiniBankSDKHelper.Instance.Start(this, document);
+            }
+            else
+            {
+                GiniBankSDKHelper.Instance.Start(this);
+            }
         }
 
         public void GoToPayPage()

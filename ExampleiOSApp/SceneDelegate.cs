@@ -1,13 +1,17 @@
-﻿using ExampleiOSApp;
+﻿using System;
+using System.Threading.Tasks;
 using ExampleiOSApp.Helpers;
 using Foundation;
 using UIKit;
 
-namespace NewSingleViewTemplate
+namespace ExampleiOSApp
 {
     [Register("SceneDelegate")]
     public class SceneDelegate : UIResponder, IUIWindowSceneDelegate
     {
+        public static string PaymentRequestId { get; set; }
+        public static NSUrl ImportedDocumentUrl { get; set; }
+
         // handle url like "ginipay-bank://blablabla?id=blablabla"
         private void HandleGiniPayBankScheme(NSUrl url)
         {
@@ -16,7 +20,7 @@ namespace NewSingleViewTemplate
                 var paymentRequestId = GiniBankSDKHelper.ReceivePaymentRequestIdFromUrlAsync(url).Result;
                 if (!string.IsNullOrWhiteSpace(paymentRequestId))
                 {
-                    PayViewController.PaymentRequestId = paymentRequestId;
+                    PaymentRequestId = paymentRequestId;
                 }
 
                 try
@@ -29,6 +33,28 @@ namespace NewSingleViewTemplate
                 }
                 catch
                 {
+                    // crash if run on startup
+                }
+            }
+        }
+
+        private void HandleDocumentScheme(NSUrl url)
+        {
+            if (!url.ToString().StartsWith("ginipay-bank://"))
+            {
+                ImportedDocumentUrl = url;
+
+                try
+                {
+                    var topController = ViewControllerHelper.GetTopViewController();
+                    if (topController is ViewController)
+                    {
+                        (topController as ViewController).Start(ImportedDocumentUrl);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
                     // crash if run on startup
                 }
             }
@@ -47,6 +73,7 @@ namespace NewSingleViewTemplate
             }
 
             HandleGiniPayBankScheme(url);
+            HandleDocumentScheme(url);
         }
 
         [Export("scene:willConnectToSession:options:")]
@@ -59,6 +86,7 @@ namespace NewSingleViewTemplate
             }
 
             HandleGiniPayBankScheme(url);
+            HandleDocumentScheme(url);
         }
 
         [Export("sceneDidDisconnect:")]

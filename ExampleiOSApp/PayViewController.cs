@@ -11,8 +11,6 @@ namespace ExampleiOSApp
         private PaymentInfoProxy _paymentInfo;
         private ResolvedPaymentRequestProxy _resolvedPaymentRequest;
 
-        public static string PaymentRequestId { get; set; }
-
         public PayViewController (IntPtr handle) : base (handle)
 		{
 		}
@@ -27,7 +25,7 @@ namespace ExampleiOSApp
                     credentials.clientId,
                     credentials.clientPassword);
 
-            _giniSDK.ReceivePaymentRequestWithPaymentRequesId(PaymentRequestId,
+            _giniSDK.ReceivePaymentRequestWithPaymentRequesId(SceneDelegate.PaymentRequestId,
                 (paymentInfo) =>
                 {
                     Console.WriteLine(paymentInfo);
@@ -43,7 +41,7 @@ namespace ExampleiOSApp
                 (error) =>
                 {
                     Console.WriteLine(error);
-                    var errorAlertController = UIAlertController.Create($"ReceivePaymentRequestWithPaymentRequesId:{PaymentRequestId}", error, UIAlertControllerStyle.Alert);
+                    var errorAlertController = UIAlertController.Create($"ReceivePaymentRequestWithPaymentRequesId:{SceneDelegate.PaymentRequestId}", error, UIAlertControllerStyle.Alert);
                     errorAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
                     PresentViewController(errorAlertController, true, null);
                 });
@@ -58,7 +56,7 @@ namespace ExampleiOSApp
                 textFieldAmount.Text,
                 textFieldPurpose.Text);
 
-            _giniSDK.ResolvePaymentRequestWithPaymentRequesId(PaymentRequestId, updatedPaymentInfo,
+            _giniSDK.ResolvePaymentRequestWithPaymentRequesId(SceneDelegate.PaymentRequestId, updatedPaymentInfo,
               (resolvedPaymentRequest) =>
               {
                   Console.WriteLine(resolvedPaymentRequest);
@@ -70,7 +68,7 @@ namespace ExampleiOSApp
               (error) =>
               {
                   Console.WriteLine(error);
-                  var errorAlertController = UIAlertController.Create($"ResolvePaymentRequestWithPaymentRequesId:{PaymentRequestId}", error, UIAlertControllerStyle.Alert);
+                  var errorAlertController = UIAlertController.Create($"ResolvePaymentRequestWithPaymentRequesId:{SceneDelegate.PaymentRequestId}", error, UIAlertControllerStyle.Alert);
                   errorAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
                   PresentViewController(errorAlertController, true, null);
               });

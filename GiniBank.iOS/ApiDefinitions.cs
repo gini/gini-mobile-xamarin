@@ -103,6 +103,50 @@ namespace GiniBank.iOS
 		IntPtr Constructor (double height, double left, nint page, double top, double width);
 	}
 
+	// @interface GiniCaptureDocumentBuilderProxy : NSObject
+	[BaseType (typeof(NSObject))]
+	interface GiniCaptureDocumentBuilderProxy
+	{
+		// -(void)buildWith:(NSURL * _Nonnull)openURL completion:(void (^ _Nonnull)(GiniCaptureDocumentProxy * _Nullable))completion;
+		[Export ("buildWith:completion:")]
+		void BuildWith (NSUrl openURL, Action<GiniCaptureDocumentProxy> completion);
+	}
+
+	// @interface GiniCaptureDocumentProxy : NSObject
+	[BaseType (typeof(NSObject))]
+	[DisableDefaultCtor]
+	interface GiniCaptureDocumentProxy
+	{
+		// @property (nonatomic) enum GiniCaptureDocumentTypeProxy type;
+		[Export ("type", ArgumentSemantic.Assign)]
+		GiniCaptureDocumentTypeProxy Type { get; set; }
+
+		// @property (copy, nonatomic) NSData * _Nonnull data;
+		[Export ("data", ArgumentSemantic.Copy)]
+		NSData Data { get; set; }
+
+		// @property (copy, nonatomic) NSString * _Nonnull id;
+		[Export ("id")]
+		string Id { get; set; }
+
+		// @property (nonatomic, strong) UIImage * _Nullable previewImage;
+		[NullAllowed, Export ("previewImage", ArgumentSemantic.Strong)]
+		UIImage PreviewImage { get; set; }
+
+		// @property (nonatomic) BOOL isReviewable;
+		[Export ("isReviewable")]
+		bool IsReviewable { get; set; }
+
+		// @property (nonatomic) BOOL isImported;
+		[Export ("isImported")]
+		bool IsImported { get; set; }
+
+		// -(instancetype _Nonnull)initWithType:(enum GiniCaptureDocumentTypeProxy)type data:(NSData * _Nonnull)data id:(NSString * _Nonnull)id previewImage:(UIImage * _Nullable)previewImage isReviewable:(BOOL)isReviewable isImported:(BOOL)isImported __attribute__((objc_designated_initializer));
+		[Export ("initWithType:data:id:previewImage:isReviewable:isImported:")]
+		[DesignatedInitializer]
+		IntPtr Constructor (GiniCaptureDocumentTypeProxy type, NSData data, string id, [NullAllowed] UIImage previewImage, bool isReviewable, bool isImported);
+	}
+
 	// @interface GiniCaptureProxy : NSObject
 	[BaseType (typeof(NSObject))]
 	[DisableDefaultCtor]
@@ -112,10 +156,10 @@ namespace GiniBank.iOS
 		[Export ("viewController", ArgumentSemantic.Strong)]
 		UIViewController ViewController { get; }
 
-		// -(instancetype _Nonnull)initWithDomain:(NSString * _Nonnull)domain id:(NSString * _Nonnull)id secret:(NSString * _Nonnull)secret configuration:(GiniConfigurationProxy * _Nullable)configuration delegate:(id<GiniCaptureProxyDelegate> _Nonnull)delegate __attribute__((objc_designated_initializer));
-		[Export ("initWithDomain:id:secret:configuration:delegate:")]
+		// -(instancetype _Nonnull)initWithDomain:(NSString * _Nonnull)domain id:(NSString * _Nonnull)id secret:(NSString * _Nonnull)secret configuration:(GiniConfigurationProxy * _Nullable)configuration delegate:(id<GiniCaptureProxyDelegate> _Nonnull)delegate importedDocument:(GiniCaptureDocumentProxy * _Nullable)importedDocument __attribute__((objc_designated_initializer));
+		[Export ("initWithDomain:id:secret:configuration:delegate:importedDocument:")]
 		[DesignatedInitializer]
-		IntPtr Constructor (string domain, string id, string secret, [NullAllowed] GiniConfigurationProxy configuration, GiniCaptureProxyDelegate @delegate);
+		IntPtr Constructor (string domain, string id, string secret, [NullAllowed] GiniConfigurationProxy configuration, GiniCaptureProxyDelegate @delegate, [NullAllowed] GiniCaptureDocumentProxy importedDocument);
 	}
 
 	// @protocol GiniCaptureProxyDelegate
@@ -227,10 +271,10 @@ namespace GiniBank.iOS
 		UIView[] OnboardingPages { get; set; }
 	}
 
-	// @interface GiniBankProxy_Swift_326 (GiniConfigurationProxy)
+	// @interface GiniBankProxy_Swift_357 (GiniConfigurationProxy)
 	[Category]
 	[BaseType (typeof(GiniConfigurationProxy))]
-	interface GiniConfigurationProxy_GiniBankProxy_Swift_326
+	interface GiniConfigurationProxy_GiniBankProxy_Swift_357
 	{
 	}
 
