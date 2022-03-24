@@ -54,9 +54,6 @@
     <TransformFile Include="Transforms\EnumMethods.xml" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="Jars\gini-capture-sdk-default-network-1.5.1.aar" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\GiniCapture.Xamarin.Android\GiniCapture.Xamarin.Android.csproj">
       <Project>{A0246169-E490-497E-91A6-B831B5FB4247}</Project>
       <Name>GiniCapture.Xamarin.Android</Name>
@@ -68,6 +65,9 @@
   </ItemGroup>
   <ItemGroup>
     <ReferenceJar Include="Jars\slf4j-api-1.7.30.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <LibraryProjectZip Include="Jars\gini-capture-sdk-default-network-1.8.0.aar" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

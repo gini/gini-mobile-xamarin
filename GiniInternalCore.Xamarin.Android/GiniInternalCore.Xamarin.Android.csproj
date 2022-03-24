@@ -27,6 +27,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <Commandlineparameters></Commandlineparameters>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>portable</DebugType>
@@ -35,6 +37,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
+    <AndroidClassParser>jar2xml</AndroidClassParser>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>8.0</LangVersion>
+    <AndroidClassParser>jar2xml</AndroidClassParser>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -55,9 +63,6 @@
     <TransformFile Include="Transforms\EnumMethods.xml" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="Jars\gini-internal-core-api-lib-1.0.1.aar" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedJar Include="Jars\bolts-android-1.4.0.jar" />
     <EmbeddedJar Include="Jars\bolts-tasks-1.4.0.jar" />
   </ItemGroup>
@@ -70,6 +75,9 @@
       <Project>{9C7C0B77-6B92-4150-B908-AFAF06FC910E}</Project>
       <Name>Volley.Xamarin.Android</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <LibraryProjectZip Include="Jars\gini-internal-core-api-lib-1.4.2.aar" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

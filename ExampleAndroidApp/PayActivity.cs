@@ -7,6 +7,7 @@ using AndroidX.AppCompat.App;
 using Google.Android.Material.TextField;
 using Java.Lang;
 using Net.Gini.Android.Bank.Api;
+using Net.Gini.Android.Bank.Api.Models;
 using Net.Gini.Android.Bank.Sdk;
 using Net.Gini.Android.Bank.Sdk.Pay;
 using Net.Gini.Android.Core.Api.Models;

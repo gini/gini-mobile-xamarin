@@ -54,9 +54,6 @@
     <TransformFile Include="Transforms\EnumMethods.xml" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="Jars\gini-capture-sdk-1.5.1.aar" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\GiniBankApi.Xamarin.Android\GiniBankApi.Xamarin.Android.csproj">
       <Name>GiniBankApi.Xamarin.Android</Name>
     </ProjectReference>
@@ -102,6 +99,9 @@
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\jersey-jsr166e-2.25.1.jar" />
     <EmbeddedReferenceJar Include="Jars\commons-imaging-1.0-alpha2.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <LibraryProjectZip Include="Jars\gini-capture-sdk-1.8.0.aar" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
