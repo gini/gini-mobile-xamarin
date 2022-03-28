@@ -46,6 +46,8 @@ public class GiniSDKProxy: NSObject {
                     onFailure("no RequestId");
                 case .apiError(let apiError):
                     onFailure(apiError.message);
+                case .amountParsingError(let amountString):
+                    onFailure("amount parsing error: \(amountString)")
                 }
             }
         }
@@ -66,7 +68,7 @@ public class GiniSDKProxy: NSObject {
             
         giniBank.resolvePaymentRequest(
             paymentRequesId: paymentRequesId,
-            paymentInfo: paymentInfo) { [weak self] result in
+            paymentInfo: paymentInfo) { result in
                     switch result {
                     case .success(let resolvedPaymentRequest):
                         let resolvedPaymentRequestProxy = ResolvedPaymentRequestProxy(
@@ -85,6 +87,8 @@ public class GiniSDKProxy: NSObject {
                             onFailure("no RequestId");
                         case .apiError(let apiError):
                             onFailure(apiError.message);
+                        case .amountParsingError(let amountString):
+                            onFailure("amount parsing error: \(amountString)")
                         }
                     }
                 }
@@ -96,7 +100,7 @@ public class GiniSDKProxy: NSObject {
         onSuccess: @escaping (PaymentInfoProxy) -> Void,
         onFailure: @escaping (String) -> Void) {
             
-        giniBank.receivePaymentRequest(paymentRequestId: paymentRequesId) { [weak self] result in
+        giniBank.receivePaymentRequest(paymentRequestId: paymentRequesId) { result in
                         switch result {
                         case let .success(paymentRequest):
                             let paymentInfo = PaymentInfoProxy(
@@ -112,6 +116,8 @@ public class GiniSDKProxy: NSObject {
                                 onFailure("no RequestId");
                             case .apiError(let apiError):
                                 onFailure(apiError.message);
+                            case .amountParsingError(let amountString):
+                                onFailure("amount parsing error: \(amountString)")
                             }
                         }
                     }

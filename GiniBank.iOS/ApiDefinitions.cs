@@ -65,10 +65,10 @@ namespace GiniBank.iOS
 		IntPtr Constructor ([NullAllowed] BoxProxy box, [NullAllowed] string candidates, string entity, string value, [NullAllowed] string name);
 	}
 
-	// @interface GiniBankProxy_Swift_255 (ExtractionProxy)
+	// @interface GiniBankProxy_Swift_262 (ExtractionProxy)
 	[Category]
 	[BaseType (typeof(ExtractionProxy))]
-	interface ExtractionProxy_GiniBankProxy_Swift_255
+	interface ExtractionProxy_GiniBankProxy_Swift_262
 	{
 	}
 
@@ -271,10 +271,10 @@ namespace GiniBank.iOS
 		UIView[] OnboardingPages { get; set; }
 	}
 
-	// @interface GiniBankProxy_Swift_357 (GiniConfigurationProxy)
+	// @interface GiniBankProxy_Swift_363 (GiniConfigurationProxy)
 	[Category]
 	[BaseType (typeof(GiniConfigurationProxy))]
-	interface GiniConfigurationProxy_GiniBankProxy_Swift_357
+	interface GiniConfigurationProxy_GiniBankProxy_Swift_363
 	{
 	}
 

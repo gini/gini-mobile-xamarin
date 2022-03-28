@@ -1,70 +1,68 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "GiniBankAPILibrary",
-        "repositoryURL": "https://github.com/gini/bank-api-library-ios.git",
-        "state": {
-          "branch": null,
-          "revision": "7320a95b1d788d9730d515a4dc2707a503403a95",
-          "version": "1.0.0"
-        }
-      },
-      {
-        "package": "GiniBankAPILibraryPinning",
-        "repositoryURL": "https://github.com/gini/bank-api-library-pinning-ios.git",
-        "state": {
-          "branch": null,
-          "revision": "0b41fc263070f55601d24b3a21c92d1c654fcde7",
-          "version": "1.0.0"
-        }
-      },
-      {
-        "package": "GiniBankSDK",
-        "repositoryURL": "https://github.com/gini/bank-sdk-ios.git",
-        "state": {
-          "branch": null,
-          "revision": "8ee177b97ff0e68b29939b802e56dbb5d690c231",
-          "version": "1.1.0"
-        }
-      },
-      {
-        "package": "GiniBankSDKPinning",
-        "repositoryURL": "https://github.com/gini/bank-sdk-pinning-ios",
-        "state": {
-          "branch": null,
-          "revision": "cb97ba37b3587dc18fe594aaf8b0a38f005f40da",
-          "version": "1.1.0"
-        }
-      },
-      {
-        "package": "GiniCaptureSDK",
-        "repositoryURL": "https://github.com/gini/capture-sdk-ios.git",
-        "state": {
-          "branch": null,
-          "revision": "0045174d2ce22f06de13aa80a7b7b9f261f29e6c",
-          "version": "1.1.0"
-        }
-      },
-      {
-        "package": "GiniCaptureSDKPinning",
-        "repositoryURL": "https://github.com/gini/capture-sdk-pinning-ios.git",
-        "state": {
-          "branch": null,
-          "revision": "37965afad432c82563d79b6fa2ac086a20db8e21",
-          "version": "1.1.0"
-        }
-      },
-      {
-        "package": "TrustKit",
-        "repositoryURL": "https://github.com/datatheorem/TrustKit.git",
-        "state": {
-          "branch": null,
-          "revision": "3e98aeb36aff65067cdae55bca7be7f1157deffb",
-          "version": "2.0.0"
-        }
+  "pins" : [
+    {
+      "identity" : "bank-api-library-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gini/bank-api-library-ios.git",
+      "state" : {
+        "revision" : "aa7fd4d3b3d3a37db4cc77a96a263b4c6c1215a8",
+        "version" : "1.1.1"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "bank-api-library-pinning-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gini/bank-api-library-pinning-ios.git",
+      "state" : {
+        "revision" : "923aa785c6623c31574125262fd329d1a0954b01",
+        "version" : "1.1.1"
+      }
+    },
+    {
+      "identity" : "bank-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gini/bank-sdk-ios.git",
+      "state" : {
+        "revision" : "0378593f6a7cd583c2c338d2f7ea83bd8c95abf9",
+        "version" : "1.4.0"
+      }
+    },
+    {
+      "identity" : "bank-sdk-pinning-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gini/bank-sdk-pinning-ios",
+      "state" : {
+        "revision" : "48b499b1a53686f1380a4b781fb2ee8ee074d43f",
+        "version" : "1.4.0"
+      }
+    },
+    {
+      "identity" : "capture-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gini/capture-sdk-ios.git",
+      "state" : {
+        "revision" : "d59fc67e7c3598e348b2fc70827d3a49bbd6e680",
+        "version" : "1.4.0"
+      }
+    },
+    {
+      "identity" : "capture-sdk-pinning-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gini/capture-sdk-pinning-ios.git",
+      "state" : {
+        "revision" : "164ba412925ed877c92ef5ff6ed2f0495c7376f9",
+        "version" : "1.4.0"
+      }
+    },
+    {
+      "identity" : "trustkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/datatheorem/TrustKit.git",
+      "state" : {
+        "revision" : "3e98aeb36aff65067cdae55bca7be7f1157deffb",
+        "version" : "2.0.0"
+      }
+    }
+  ],
+  "version" : 2
 }
