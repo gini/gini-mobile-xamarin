@@ -2,6 +2,30 @@
 
 This repository contains projects to help you use the Android and iOS Gini Bank SDK with Xamarin.
 
+- [Gini Bank SDK Xamarin Bindings and Examples](#gini-bank-sdk-xamarin-bindings-and-examples)
+  - [Requirements](#requirements)
+    - [Visual Studio Community 2019 for Mac](#visual-studio-community-2019-for-mac)
+    - [iOS](#ios)
+    - [Android](#android)
+  - [Android](#android-1)
+    - [Documentation](#documentation)
+    - [Binding Libraries](#binding-libraries)
+    - [How to use in new project](#how-to-use-in-new-project)
+    - [Customization](#customization)
+    - [Example Project](#example-project)
+    - [Updating the bindings](#updating-the-bindings)
+  - [iOS](#ios-1)
+    - [Example app](#example-app)
+    - [Prerequisits](#prerequisits)
+    - [Usage](#usage)
+    - [Customization](#customization-1)
+      - [Strings](#strings)
+      - [Buttons](#buttons)
+      - [Navigation Bar](#navigation-bar)
+      - [Onboarding Pages](#onboarding-pages)
+    - [Troubleshooting](#troubleshooting)
+    - [Updating the `GiniBank.iOS.dll`](#updating-the-ginibankiosdll)
+
 ## Requirements
 
 ### Visual Studio Community 2019 for Mac
