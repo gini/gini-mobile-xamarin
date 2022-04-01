@@ -73,14 +73,14 @@ you use the default networking implementation you don’t need to interact with 
 * Mono Framework Runtime >=6.12.0.140
 
 ### iOS
-* Xcode >=13.1
+* Xcode >=13.3
 * [Objective Sharpie](https://docs.microsoft.com/en-us/xamarin/cross-platform/macios/binding/objective-sharpie/get-started) >=3.5 
  
 ### Android
 * SDK Tools Version: 26.1.1
 * SDK Platform Tools Version: 31.0.3
 * SDK Build Tools Version: 31.0.0
-* Eclipse Temurin JDK >=1.8.0_302
+* Microsoft JDK >=11.0.12
 
 ## Migrate from gini-vision-lib-xamarin
 
@@ -130,7 +130,8 @@ how to use GiniBank SDK for Android.
    ```
 3. Add the following NuGet library:  
    ```
-   Xamarin.GooglePlayServices.
+   Xamarin.GooglePlayServices
+   Square.Moshi
    ```
 4. Add Camera permission to AndroidManifest.xml:  
    ```
