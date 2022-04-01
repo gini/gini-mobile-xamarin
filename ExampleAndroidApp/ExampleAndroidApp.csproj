@@ -60,27 +60,6 @@
     <Reference Include="Mono.Android" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors" />
-    <Reference Include="GiniBank.Xamarin.Android">
-      <HintPath>GiniBank.Xamarin.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="GiniBankApi.Xamarin.Android">
-      <HintPath>GiniBankApi.Xamarin.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="GiniCapture.Xamarin.Android">
-      <HintPath>GiniCapture.Xamarin.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="GiniCaptureNetwork.Xamarin.Android">
-      <HintPath>GiniCaptureNetwork.Xamarin.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="GiniInternalCore.Xamarin.Android">
-      <HintPath>GiniInternalCore.Xamarin.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="TrustKit.Xamarin.Android">
-      <HintPath>TrustKit.Xamarin.Android.dll</HintPath>
-    </Reference>
-    <Reference Include="Volley.Xamarin.Android">
-      <HintPath>Volley.Xamarin.Android.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -159,9 +138,36 @@
     <PackageReference Include="Xamarin.KotlinX.Coroutines.Core">
       <Version>1.5.2.2</Version>
     </PackageReference>
-    <PackageReference Include="Square.Moshi">
-      <Version>1.12.0</Version>
-    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GiniBank.Xamarin.Android\GiniBank.Xamarin.Android.csproj">
+      <Project>{37A60837-63ED-4261-8095-74483F1C4120}</Project>
+      <Name>GiniBank.Xamarin.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GiniBankApi.Xamarin.Android\GiniBankApi.Xamarin.Android.csproj">
+      <Project>{14241375-F7E4-45D4-99CC-9242F2377802}</Project>
+      <Name>GiniBankApi.Xamarin.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GiniCapture.Xamarin.Android\GiniCapture.Xamarin.Android.csproj">
+      <Project>{A0246169-E490-497E-91A6-B831B5FB4247}</Project>
+      <Name>GiniCapture.Xamarin.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GiniCaptureNetwork.Xamarin.Android\GiniCaptureNetwork.Xamarin.Android.csproj">
+      <Project>{9DF3133E-8175-493D-A316-E8E33082FEB3}</Project>
+      <Name>GiniCaptureNetwork.Xamarin.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GiniInternalCore.Xamarin.Android\GiniInternalCore.Xamarin.Android.csproj">
+      <Project>{BBD8AC96-6E69-42E3-BD93-97C15E770C27}</Project>
+      <Name>GiniInternalCore.Xamarin.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrustKit.Xamarin.Android\TrustKit.Xamarin.Android.csproj">
+      <Project>{9AC1EB85-289E-4E71-B6F3-32EB9F4236E8}</Project>
+      <Name>TrustKit.Xamarin.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Volley.Xamarin.Android\Volley.Xamarin.Android.csproj">
+      <Project>{9C7C0B77-6B92-4150-B908-AFAF06FC910E}</Project>
+      <Name>Volley.Xamarin.Android</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

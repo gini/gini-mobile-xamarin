@@ -118,20 +118,19 @@ how to use GiniBank SDK for Android.
 ### How to use in new project
 
 1. Set Target Android version to: Android 11 (API Level 30)
-2. Add the DLLs from the ExampleAndroidApp to your project:
+2. Add references to the following projects:
    ```
-   GiniBank.Xamarin.Android.dll
-   GiniBankApi.Xamarin.Android.dll
-   GiniCapture.Xamarin.Android.dll
-   GiniCaptureNetwork.Xamarin.Android.dll
-   GiniInternalCore.Xamarin.Android.dll
-   TrustKit.Xamarin.Android.dll
-   Volley.Xamarin.Android.dll
+   GiniBank.Xamarin.Android
+   GiniBankApi.Xamarin.Android
+   GiniCapture.Xamarin.Android
+   GiniCaptureNetwork.Xamarin.Android
+   GiniInternalCore.Xamarin.Android
+   TrustKit.Xamarin.Android
+   Volley.Xamarin.Android
    ```
 3. Add the following NuGet library:  
    ```
    Xamarin.GooglePlayServices
-   Square.Moshi
    ```
 4. Add Camera permission to AndroidManifest.xml:  
    ```
@@ -156,13 +155,14 @@ You can see how to work with GiniBank SDK in the `ExampleAndroidApp` project.
    is also present at AndroidManifest.xmlvalue=(@string/app_name)."
    ```
    Suggestion: add 'tools:replace="android:label"' to <application> element at AndroidManifest.xml
-
 * Error APT2260: 
    ```
    style attribute 'attr/colorOnPrimary (aka gini.exampleandroidapp:attr/colorOnPrimary)' not found. ..."
    ```
    Suggestion: it can happen after installing the `Xamarin.GooglePlayServices.Vision` NuGet package. Just update all
    other Nugets to the latest versions.
+* Other errors: try removing all `.vs`, `bin/` and `obj/` folders and restart Visual Studio.
+
 
 ### Updating the bindings
 
@@ -183,10 +183,9 @@ To update the bindings project to the latest version of our [native Android Gini
    * GiniInternalCore.Xamarin.Android -> https://search.maven.org/artifact/net.gini.android/gini-internal-core-api-lib
    * TrustKit.Xamarin.Android -> https://search.maven.org/artifact/com.datatheorem.android.trustkit/trustkit
    * Volley.Xamarin.Android -> https://search.maven.org/artifact/com.android.volley/volley
-2.  Run `./build-android.sh`.
-3.  The new DLLs will be generated and copied to the `ExampleAndroidApp` folder.
 
-**Note**: If after updating you see errors, please take check the Xamarin java binding [trooubleshooting page](https://docs.microsoft.com/en-us/xamarin/android/platform/binding-java-library/troubleshooting-bindings).
+**Note**: If after updating you see errors, please take check the Xamarin java binding [trooubleshooting
+page](https://docs.microsoft.com/en-us/xamarin/android/platform/binding-java-library/troubleshooting-bindings).
 
 ## iOS
 
