@@ -27,7 +27,7 @@
   <attr path="/api/package[@name='net.gini.android.bank.sdk']/class[@name='GiniBank']/method[@name='setGiniApi']" name="visibility">public</attr>
 
   <attr path="/api/package[@name='net.gini.android.bank.sdk']/class[@name='GiniBank']/method[@name='getPaymentRequest']" name="managedReturn">Net.Gini.Android.Core.Api.Models.PaymentRequest</attr>
-  <attr path="/api/package[@name='net.gini.android.bank.sdk']/class[@name='GiniBank']/method[@name='resolvePaymentRequest']" name="managedReturn">Net.Gini.Android.Core.Api.Models.ResolvedPayment</attr>
+  <attr path="/api/package[@name='net.gini.android.bank.sdk']/class[@name='GiniBank']/method[@name='resolvePaymentRequest']" name="managedReturn">Net.Gini.Android.Bank.Api.Models.ResolvedPayment</attr>
 
   <remove-node path="/api/package[@name='net.gini.android.bank.sdk.databinding']" /> 
 

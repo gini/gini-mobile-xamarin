@@ -221,6 +221,7 @@ The buttons currently available for customization are:
 2. Go to /Users/{username}/Library/Developer/Xcode/DerivedData(Xcode->Preferences->Locations-Derived Data)
 3. Copy folders Release-iphoneos and Release-iphonesimulator from GiniBankProxy...../Build/Products/to GiniBank.iOS.Proxy/build folder
 4. run 'bash build.sh'
-  
+   If it fails with "System.BadImageFormatException: Invalid Image" error then download and install Xamarin.iOS 15.2.0.1 from here: https://aka.ms/xvs/pkg/macios/15.2.0.1
+     
 new `GiniBank.iOS.dll` will be generated and located in `ExampleiOSApp`
   

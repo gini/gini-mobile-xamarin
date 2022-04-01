@@ -35,6 +35,20 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <MandroidExtraArgs></MandroidExtraArgs>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidUseAapt2>true</AndroidUseAapt2>
+    <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
+    <AndroidFastDeploymentType>Assemblies</AndroidFastDeploymentType>
+    <AndroidManifest></AndroidManifest>
+    <NoWarn>;CS1573;CS1591</NoWarn>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoStdLib>false</NoStdLib>
+    <MandroidExtraArgs></MandroidExtraArgs>
+    <AndroidUseAapt2>true</AndroidUseAapt2>
+    <NoWarn>;CS1573;CS1591</NoWarn>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -65,9 +79,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="Jars\gini-bank-sdk-1.4.2.aar" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.Core.Core.Ktx">
       <Version>1.6.0.3</Version>
     </PackageReference>
@@ -89,6 +100,9 @@
     <PackageReference Include="Xamarin.AndroidX.DataBinding.ViewBinding">
       <Version>7.0.3</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <LibraryProjectZip Include="Jars\gini-bank-sdk-1.7.0.aar" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

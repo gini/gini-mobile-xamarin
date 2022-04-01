@@ -22,6 +22,7 @@ cp -R build/Release-iphonesimulator/GiniCaptureSDK_GiniCaptureSDK.bundle build/R
 lipo -create build/Release-iphoneos/GiniBankProxy.framework/GiniBankProxy build/Release-iphonesimulator/GiniBankProxy.framework/GiniBankProxy -output build/Release-fat/GiniBankProxy.framework/GiniBankProxy
 
 # Generate binding classes
+# If it fails with "System.BadImageFormatException: Invalid Image" error then download and install Xamarin.iOS 15.2.0.1 from here: https://aka.ms/xvs/pkg/macios/15.2.0.1
 sharpie bind --sdk=iphoneos --output="build/XamarinApiDef" --namespace="GiniBank.iOS"  --scope=build/Release-fat/GiniBankProxy.framework/Headers build/Release-fat/GiniBankProxy.framework/Headers/GiniBankProxy-Swift.h -c -F build/Release-fat
 # TODO: fix 3 erros on missed Foundations(No extensions and onboardingPages)
 
