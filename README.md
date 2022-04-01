@@ -3,6 +3,10 @@
 This repository contains projects to help you use the Android and iOS Gini Bank SDK with Xamarin.
 
 - [Gini Bank SDK Xamarin Bindings and Examples](#gini-bank-sdk-xamarin-bindings-and-examples)
+  - [New SDKs](#new-sdks)
+    - [Gini Bank SDK](#gini-bank-sdk)
+    - [Gini Capture SDK](#gini-capture-sdk)
+    - [Gini Bank API Library](#gini-bank-api-library)
   - [Requirements](#requirements)
     - [Visual Studio Community 2019 for Mac](#visual-studio-community-2019-for-mac)
     - [iOS](#ios)
@@ -25,6 +29,36 @@ This repository contains projects to help you use the Android and iOS Gini Bank 
       - [Onboarding Pages](#onboarding-pages)
     - [Troubleshooting](#troubleshooting)
     - [Updating the `GiniBank.iOS.dll`](#updating-the-ginibankiosdll)
+
+## New SDKs
+
+We introduced three new SDKs: Gini Bank SDK, Gini Capture SDK, Gini Bank API Library.
+
+### Gini Bank SDK
+
+The Gini Bank SDK ([iOS](https://developer.gini.net/gini-mobile-ios/GiniBankSDK/),
+[Android](http://developer.gini.net/gini-mobile-android/bank-sdk/sdk/html/index.html)) builds upon the Gini Capture SDK
+and Gini Bank API Library to enable the photopayment feature while offering additional features like Gini Pay Connect
+and Return Assistant.
+
+The Gini Bank SDK is the main entry point. You should only interact with the other SDKs through the Gini Bank SDK.
+
+### Gini Capture SDK
+
+The Gini Capture SDK ([iOS](https://developer.gini.net/gini-mobile-ios/GiniCaptureSDK/index.html),
+[Android](http://developer.gini.net/gini-mobile-android/capture-sdk/sdk/html/)) supersedes the Gini Vision Library
+([iOS](https://developer.gini.net/gini-vision-lib-ios/docs/),
+[Android](https://developer.gini.net/gini-vision-lib-android/html/)). We will often refer to the Gini Capture SDK
+because it is used to fulfill the same functionality as the Gini Vision Library did.
+
+### Gini Bank API Library
+
+The Gini Bank API Library ([iOS](https://developer.gini.net/gini-mobile-ios/GiniBankAPILibrary/),
+[Android](https://developer.gini.net/gini-mobile-android/bank-api-library/library/html/)) supersedes the Gini API SDK
+([iOS](http://developer.gini.net/gini-ios/docs/), [Android](http://developer.gini.net/gini-sdk-android/)).
+
+You will only need to directly interact with the Gini Bank API Library if you implement a custom networking layer. If
+you use the default networking implementation you don’t need to interact with it.
 
 ## Requirements
 
