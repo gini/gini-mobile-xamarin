@@ -1,9 +1,11 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Open GiniBankProxy.xcodeproj in XCode and build in 'iOS device' and 'ios simulator' modes(release)
 # Go to /Users/{username}/Library/Developer/Xcode/DerivedData(Xcode->Preferences->Locations-Derived Data)
 # Copy folders Release-iphoneos and Release-iphonesimulator 
 # from GiniBankProxy...../Build/Products/to GiniBank.iOS.Proxy/build folder
+
+pushd GiniBank.iOS.Proxy
 
 # clean build dir
 rm -rf build/Release-fat
@@ -54,3 +56,5 @@ mv ../GiniBank.iOS/obj/Debug/ios/GiniBank.iOS/GiniCaptureProxyDelegate.g.cs_new 
 msbuild ../GiniBank.iOS/GiniBank.iOS.csproj
 
 cp ../GiniBank.iOS/bin/Debug/GiniBank.iOS.dll ../ExampleiOSApp/GiniBank.iOS.dll
+
+popd

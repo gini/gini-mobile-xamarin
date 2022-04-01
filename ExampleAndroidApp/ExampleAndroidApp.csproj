@@ -141,19 +141,32 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GiniBank.Xamarin.Android\GiniBank.Xamarin.Android.csproj">
+      <Project>{37A60837-63ED-4261-8095-74483F1C4120}</Project>
       <Name>GiniBank.Xamarin.Android</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GiniBankApi.Xamarin.Android\GiniBankApi.Xamarin.Android.csproj">
+      <Project>{14241375-F7E4-45D4-99CC-9242F2377802}</Project>
+      <Name>GiniBankApi.Xamarin.Android</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GiniCapture.Xamarin.Android\GiniCapture.Xamarin.Android.csproj">
+      <Project>{A0246169-E490-497E-91A6-B831B5FB4247}</Project>
       <Name>GiniCapture.Xamarin.Android</Name>
     </ProjectReference>
     <ProjectReference Include="..\GiniCaptureNetwork.Xamarin.Android\GiniCaptureNetwork.Xamarin.Android.csproj">
+      <Project>{9DF3133E-8175-493D-A316-E8E33082FEB3}</Project>
       <Name>GiniCaptureNetwork.Xamarin.Android</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GiniBankApi.Xamarin.Android\GiniBankApi.Xamarin.Android.csproj">
-      <Name>GiniBankApi.Xamarin.Android</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GiniInternalCore.Xamarin.Android\GiniInternalCore.Xamarin.Android.csproj">
+      <Project>{BBD8AC96-6E69-42E3-BD93-97C15E770C27}</Project>
       <Name>GiniInternalCore.Xamarin.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrustKit.Xamarin.Android\TrustKit.Xamarin.Android.csproj">
+      <Project>{9AC1EB85-289E-4E71-B6F3-32EB9F4236E8}</Project>
+      <Name>TrustKit.Xamarin.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Volley.Xamarin.Android\Volley.Xamarin.Android.csproj">
+      <Project>{9C7C0B77-6B92-4150-B908-AFAF06FC910E}</Project>
+      <Name>Volley.Xamarin.Android</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
