@@ -2,6 +2,9 @@
 
 This repository contains projects to help you use the Android and iOS Gini Bank SDK with Xamarin.
 
+**Important:** If you are using the Gini Vision Library please consult the [Migrate from
+gini-vision-lib-xamarin](#migrate-from-gini-vision-lib-xamarin) section to update to the Gini Bank SDK.
+
 - [Gini Bank SDK Xamarin Bindings and Examples](#gini-bank-sdk-xamarin-bindings-and-examples)
   - [New SDKs](#new-sdks)
     - [Gini Bank SDK](#gini-bank-sdk)
@@ -11,14 +14,18 @@ This repository contains projects to help you use the Android and iOS Gini Bank 
     - [Visual Studio Community 2019 for Mac](#visual-studio-community-2019-for-mac)
     - [iOS](#ios)
     - [Android](#android)
-  - [Android](#android-1)
+  - [Migrate from gini-vision-lib-xamarin](#migrate-from-gini-vision-lib-xamarin)
+    - [Android](#android-1)
+    - [iOS](#ios-1)
+  - [Android](#android-2)
     - [Documentation](#documentation)
     - [Binding Libraries](#binding-libraries)
     - [How to use in new project](#how-to-use-in-new-project)
     - [Customization](#customization)
     - [Example Project](#example-project)
+    - [Troubleshooting](#troubleshooting)
     - [Updating the bindings](#updating-the-bindings)
-  - [iOS](#ios-1)
+  - [iOS](#ios-2)
     - [Example app](#example-app)
     - [Prerequisits](#prerequisits)
     - [Usage](#usage)
@@ -27,7 +34,7 @@ This repository contains projects to help you use the Android and iOS Gini Bank 
       - [Buttons](#buttons)
       - [Navigation Bar](#navigation-bar)
       - [Onboarding Pages](#onboarding-pages)
-    - [Troubleshooting](#troubleshooting)
+    - [Troubleshooting](#troubleshooting-1)
     - [Updating the `GiniBank.iOS.dll`](#updating-the-ginibankiosdll)
 
 ## New SDKs
@@ -76,11 +83,38 @@ you use the default networking implementation you don’t need to interact with 
 * SDK Build Tools Version: 31.0.0
 * Eclipse Temurin JDK >=1.8.0_302
 
+## Migrate from gini-vision-lib-xamarin
+
+If you are using the bindings from the [gini-vision-lib-xamarin](https://github.com/gini/gini-vision-lib-xamarin)
+repository then please consult the following instructions to migrate to the new bindings provided in this repository.
+
+### Android
+
+To add the new bindings to your project follow the steps described in [Binding Libraries](#binding-libraries) and [How
+to use in new project](#how-to-use-in-new-project).
+
+The public API of the Gini Bank SDK bindings is equivalent to the native public API. Therefore please consult the native
+Gini Bank SDK [migration
+guide](http://developer.gini.net/gini-mobile-android/bank-sdk/sdk/html/migrating-from-gvl.html).
+
+Please also check out the `ExampleAndroidApp` project to see how the new Android bindings are used.
+
+### iOS
+
+To add the new iOS binding DLL follow the instructions described in [iOS](#ios-2).
+
+The `GVLProxy` has been replaced by the `GiniCaptureProxy`. Please consult the `GiniBankSDKHelper.cs` in the
+`ExampleiOSApp` project to see how it is used.
+
+We added another proxy called `GiniSDKProxy` which is used for the Gini Pay Connect feature. You can view how it's used
+in the `GiniBankSDKHelper.cs` file.
+
 ## Android
 
 ### Documentation
 
-Take a look at the [Documentation](https://developer.gini.net/gini-mobile-android/bank-sdk/sdk/html/index.html) to see how to use GiniBank SDK for Android
+Take a look at the [Documentation](https://developer.gini.net/gini-mobile-android/bank-sdk/sdk/html/index.html) to see
+how to use GiniBank SDK for Android.
 
 ### Binding Libraries
 
@@ -124,7 +158,7 @@ to see which resources can be overridden.
 
 You can see how to work with GiniBank SDK in the `ExampleAndroidApp` project.
 
-###Troubleshooting
+### Troubleshooting
 
 * Error AMM0000: 	
    ```
