@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/gini/bank-sdk-ios.git",
       "state" : {
-        "revision" : "0378593f6a7cd583c2c338d2f7ea83bd8c95abf9",
-        "version" : "1.4.0"
+        "revision" : "9f47f9264ff457c0066cd572279228f6581556c9",
+        "version" : "1.5.0"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/gini/bank-sdk-pinning-ios",
       "state" : {
-        "revision" : "48b499b1a53686f1380a4b781fb2ee8ee074d43f",
-        "version" : "1.4.0"
+        "revision" : "002c19532ebd455617076c5de5cd6e7a2524de2f",
+        "version" : "1.5.0"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/gini/capture-sdk-ios.git",
       "state" : {
-        "revision" : "d59fc67e7c3598e348b2fc70827d3a49bbd6e680",
-        "version" : "1.4.0"
+        "revision" : "977a7a6679edce1a5d9f0516bb42d8ff42e56656",
+        "version" : "1.5.0"
       }
     },
     {
@@ -50,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/gini/capture-sdk-pinning-ios.git",
       "state" : {
-        "revision" : "164ba412925ed877c92ef5ff6ed2f0495c7376f9",
-        "version" : "1.4.0"
+        "revision" : "3025bff30d0fa54beb72c69015231eb4eaedd77b",
+        "version" : "1.5.0"
       }
     },
     {
