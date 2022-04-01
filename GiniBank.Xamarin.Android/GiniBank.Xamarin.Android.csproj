@@ -77,6 +77,10 @@
     <ProjectReference Include="..\GiniInternalCore.Xamarin.Android\GiniInternalCore.Xamarin.Android.csproj">
       <Name>GiniInternalCore.Xamarin.Android</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GiniCaptureNetwork.Xamarin.Android\GiniCaptureNetwork.Xamarin.Android.csproj">
+      <Project>{9DF3133E-8175-493D-A316-E8E33082FEB3}</Project>
+      <Name>GiniCaptureNetwork.Xamarin.Android</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.Core.Core.Ktx">

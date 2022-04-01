@@ -19,7 +19,6 @@ gini-vision-lib-xamarin](#migrate-from-gini-vision-lib-xamarin) section to updat
     - [iOS](#ios-1)
   - [Android](#android-2)
     - [Documentation](#documentation)
-    - [Binding Libraries](#binding-libraries)
     - [How to use in new project](#how-to-use-in-new-project)
     - [Customization](#customization)
     - [Example Project](#example-project)
@@ -116,28 +115,18 @@ in the `GiniBankSDKHelper.cs` file.
 Take a look at the [Documentation](https://developer.gini.net/gini-mobile-android/bank-sdk/sdk/html/index.html) to see
 how to use GiniBank SDK for Android.
 
-### Binding Libraries
-
-Because modules depend on each other they need to be build in the right order:
-
-1) Volley.Xamarin.Android
-2) TrustKit.Xamarin.Android
-3) GiniInternalCore.Xamarin.Android
-4) GiniCaptureNetwork.Xamarin.Android
-5) GiniCapture.Xamarin.Android
-6) GiniBankApi.Xamarin.Android
-7) GiniBank.Xamarin.AndroidExample
-
-Only after that the example app can be run.
-
 ### How to use in new project
 
 1. Set Target Android version to: Android 11 (API Level 30)
-2. Add the DLLs created by the following bindings libraries:  
+2. Add the DLLs from the ExampleAndroidApp to your project:
    ```
-   GiniBank.Xamarin.Android
-   GiniCapture.Xamarin.Android
-   GiniCaptureNetwork.Xamarin.Android
+   GiniBank.Xamarin.Android.dll
+   GiniBankApi.Xamarin.Android.dll
+   GiniCapture.Xamarin.Android.dll
+   GiniCaptureNetwork.Xamarin.Android.dll
+   GiniInternalCore.Xamarin.Android.dll
+   TrustKit.Xamarin.Android.dll
+   Volley.Xamarin.Android.dll
    ```
 3. Add the following NuGet library:  
    ```
@@ -185,14 +174,16 @@ To update the bindings project to the latest version of our [native Android Gini
    Copy the aar to the `GiniBank.Xamarin.Android/Jars/` folder and it to the `GiniBank.Xamarin.Android` project in Visual Studio.  
    **Important**: don't forget to remove the old aar from the project.
 
-Do the same steps for all bindings<br />
-* GiniBank.Xamarin.Android -> https://search.maven.org/artifact/net.gini.android/gini-bank-sdk
-* GiniBankApi.Xamarin.Android -> https://search.maven.org/artifact/net.gini.android/gini-bank-api-lib
-* GiniCapture.Xamarin.Android -> https://search.maven.org/artifact/net.gini.android/gini-capture-sdk
-* GiniCaptureNetwork.Xamarin.Android -> https://search.maven.org/artifact/net.gini.android/gini-capture-sdk-default-network
-* GiniInternalCore.Xamarin.Android -> https://search.maven.org/artifact/net.gini.android/gini-internal-core-api-lib
-* TrustKit.Xamarin.Android -> https://search.maven.org/artifact/com.datatheorem.android.trustkit/trustkit
-* Volley.Xamarin.Android -> https://search.maven.org/artifact/com.android.volley/volley
+   Do the same steps for all bindings<br />
+   * GiniBank.Xamarin.Android -> https://search.maven.org/artifact/net.gini.android/gini-bank-sdk
+   * GiniBankApi.Xamarin.Android -> https://search.maven.org/artifact/net.gini.android/gini-bank-api-lib
+   * GiniCapture.Xamarin.Android -> https://search.maven.org/artifact/net.gini.android/gini-capture-sdk
+   * GiniCaptureNetwork.Xamarin.Android -> https://search.maven.org/artifact/net.gini.android/gini-capture-sdk-default-network
+   * GiniInternalCore.Xamarin.Android -> https://search.maven.org/artifact/net.gini.android/gini-internal-core-api-lib
+   * TrustKit.Xamarin.Android -> https://search.maven.org/artifact/com.datatheorem.android.trustkit/trustkit
+   * Volley.Xamarin.Android -> https://search.maven.org/artifact/com.android.volley/volley
+2.  Run `./build-android.sh`.
+3.  The new DLLs will be generated and copied to the `ExampleAndroidApp` folder.
 
 **Note**: If after updating you see errors, please take check the Xamarin java binding [trooubleshooting page](https://docs.microsoft.com/en-us/xamarin/android/platform/binding-java-library/troubleshooting-bindings).
 

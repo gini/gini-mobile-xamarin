@@ -60,6 +60,27 @@
     <Reference Include="Mono.Android" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors" />
+    <Reference Include="GiniBank.Xamarin.Android">
+      <HintPath>GiniBank.Xamarin.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="GiniBankApi.Xamarin.Android">
+      <HintPath>GiniBankApi.Xamarin.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="GiniCapture.Xamarin.Android">
+      <HintPath>GiniCapture.Xamarin.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="GiniCaptureNetwork.Xamarin.Android">
+      <HintPath>GiniCaptureNetwork.Xamarin.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="GiniInternalCore.Xamarin.Android">
+      <HintPath>GiniInternalCore.Xamarin.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="TrustKit.Xamarin.Android">
+      <HintPath>TrustKit.Xamarin.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Volley.Xamarin.Android">
+      <HintPath>Volley.Xamarin.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -138,23 +159,6 @@
     <PackageReference Include="Xamarin.KotlinX.Coroutines.Core">
       <Version>1.5.2.2</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GiniBank.Xamarin.Android\GiniBank.Xamarin.Android.csproj">
-      <Name>GiniBank.Xamarin.Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GiniCapture.Xamarin.Android\GiniCapture.Xamarin.Android.csproj">
-      <Name>GiniCapture.Xamarin.Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GiniCaptureNetwork.Xamarin.Android\GiniCaptureNetwork.Xamarin.Android.csproj">
-      <Name>GiniCaptureNetwork.Xamarin.Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GiniBankApi.Xamarin.Android\GiniBankApi.Xamarin.Android.csproj">
-      <Name>GiniBankApi.Xamarin.Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GiniInternalCore.Xamarin.Android\GiniInternalCore.Xamarin.Android.csproj">
-      <Name>GiniInternalCore.Xamarin.Android</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
