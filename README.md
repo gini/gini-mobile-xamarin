@@ -166,7 +166,15 @@ Do the same steps for all bindings<br />
 
 GiniBank SDK for iOS is provided as a DLL file called `GiniBank.iOS.dll` located in `ExampleiOSApp`. It needs to be added to your project as a reference.
 
-The API for the iOS integration is provided through a proxy library (`GiniBank.iOS.Proxy`) and it's a limited version of what's available natively. Please contact Gini if you need to access any functionality that isn't exposed. Only the `Screen API` is supported at this point.
+The API for the iOS integration is provided through a proxy library (`GiniBank.iOS.Proxy`) and it's a limited version of
+what's available natively. 
+
+Please contact Gini if you need to access any functionality that isn't exposed. Only the `Screen API` is supported at
+this point. 
+
+Alternatively you may propose changes via pull requests and we'll gladly review them. You may consult our native
+[Documentation](https://developer.gini.net/gini-mobile-ios/GiniBankSDK/) to see all the available features and how to
+use them.
 
 ### Example app
 
