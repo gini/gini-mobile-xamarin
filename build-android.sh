@@ -24,8 +24,6 @@ done
 # Build the top level binding which will also build all the bindings it depends on
 msbuild GiniBank.Xamarin.Android/GiniBank.Xamarin.Android.csproj -target:Clean -property:Configuration=Debug
 msbuild GiniBank.Xamarin.Android/GiniBank.Xamarin.Android.csproj -property:Configuration=Debug
-msbuild GiniBank.Xamarin.Android/GiniBank.Xamarin.Android.csproj -target:Clean -property:Configuration=Release
-msbuild GiniBank.Xamarin.Android/GiniBank.Xamarin.Android.csproj -property:Configuration=Release
 
 # Copy the required DLLs to the example project
 for module in $modules; do
