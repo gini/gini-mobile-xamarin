@@ -19,7 +19,7 @@ gini-vision-lib-xamarin](#migrate-from-gini-vision-lib-xamarin) section to updat
     - [iOS](#ios-1)
   - [Android](#android-2)
     - [Documentation](#documentation)
-    - [How to use in new project](#how-to-use-in-new-project)
+    - [How to use in a new project](#how-to-use-in-a-new-project)
     - [Customization](#customization)
     - [Example Project](#example-project)
     - [Troubleshooting](#troubleshooting)
@@ -44,7 +44,7 @@ We introduced three new SDKs: Gini Bank SDK, Gini Capture SDK, Gini Bank API Lib
 
 The Gini Bank SDK ([iOS](https://developer.gini.net/gini-mobile-ios/GiniBankSDK/),
 [Android](http://developer.gini.net/gini-mobile-android/bank-sdk/sdk/html/index.html)) builds upon the Gini Capture SDK
-and Gini Bank API Library to enable the photopayment feature while offering additional features like Gini Pay Connect
+and Gini Bank API Library to enable the photo payment feature while offering additional features like Gini Pay Connect
 and Return Assistant.
 
 The Gini Bank SDK is the main entry point. You should only interact with the other SDKs through the Gini Bank SDK.
@@ -89,8 +89,8 @@ repository then please consult the following instructions to migrate to the new 
 
 ### Android
 
-To add the new bindings to your project follow the steps described in [How to use in new
-project](#how-to-use-in-new-project).
+To add the new bindings to your project follow the steps described in [How to use in a new
+project](#how-to-use-in-a-new-project).
 
 The public API of the Gini Bank SDK bindings is equivalent to the native public API. Therefore please consult the native
 Gini Bank SDK [migration
@@ -115,7 +115,7 @@ in the `GiniBankSDKHelper.cs` file.
 Take a look at the [Documentation](https://developer.gini.net/gini-mobile-android/bank-sdk/sdk/html/index.html) to see
 how to use GiniBank SDK for Android.
 
-### How to use in new project
+### How to use in a new project
 
 1. Set Target Android version to: Android 11 (API Level 30)
 2. Add references to the following projects:
