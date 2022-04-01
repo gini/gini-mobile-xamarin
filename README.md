@@ -89,8 +89,8 @@ repository then please consult the following instructions to migrate to the new 
 
 ### Android
 
-To add the new bindings to your project follow the steps described in [Binding Libraries](#binding-libraries) and [How
-to use in new project](#how-to-use-in-new-project).
+To add the new bindings to your project follow the steps described in [How to use in new
+project](#how-to-use-in-new-project).
 
 The public API of the Gini Bank SDK bindings is equivalent to the native public API. Therefore please consult the native
 Gini Bank SDK [migration
