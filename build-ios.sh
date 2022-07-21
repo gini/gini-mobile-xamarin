@@ -20,8 +20,8 @@ cp -R build/Release-iphoneos build/Release-fat
 cp -R build/Release-iphonesimulator/GiniBankProxy.framework/Modules/GiniBankProxy.swiftmodule build/Release-fat/GiniBankProxy.framework/Modules
 
 # copy bundle res(swift packages issue)
-cp -R build/Release-iphonesimulator/GiniBankSDK_GiniBankSDK.bundle build/Release-fat/GiniBankProxy.framework
-cp -R build/Release-iphonesimulator/GiniCaptureSDK_GiniCaptureSDK.bundle build/Release-fat/GiniBankProxy.framework
+cp -R build/Release-iphoneos/GiniBankSDK_GiniBankSDK.bundle build/Release-fat/GiniBankProxy.framework
+cp -R build/Release-iphoneos/GiniCaptureSDK_GiniCaptureSDK.bundle build/Release-fat/GiniBankProxy.framework
 
 # Create fat library
 lipo -create build/Release-iphoneos/GiniBankProxy.framework/GiniBankProxy build/Release-iphonesimulator/GiniBankProxy.framework/GiniBankProxy -output build/Release-fat/GiniBankProxy.framework/GiniBankProxy
