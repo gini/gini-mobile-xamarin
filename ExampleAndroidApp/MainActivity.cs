@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Android.App;
@@ -80,6 +81,7 @@ namespace ExampleAndroidApp
                 ShowUnfulfilledRequirementsToast(report);
             }
 
+            ConfigureGiniBank();
             ConfigureGiniCapture();
 
             if (intent != null)
@@ -171,13 +173,19 @@ namespace ExampleAndroidApp
                 new GiniCaptureEventTracker(), // Event Tracker
                 new List<HelpItem.Custom> // Custom Help Items
                 {
-                    new HelpItem.Custom(Resource.String.custom_help_screen_title,
-                        new Intent(this, typeof(CustomHelpActivity))) 
-                },  
+                new HelpItem.Custom(Resource.String.custom_help_screen_title,
+                    new Intent(this, typeof(CustomHelpActivity)))
+                },
                 true, // GiniErrorLoggerIsOn
-                null); // Error Logger listener
+                null, // Error Logger listener
+                5 * 1024 * 1024);
 
             GiniBank.Instance.SetCaptureConfiguration(config);
+        }
+
+        private void ConfigureGiniBank()
+        {
+            GiniBank.Instance.EnableReturnReasons = false;
         }
 
         public void OnActivityResult(Java.Lang.Object result)
