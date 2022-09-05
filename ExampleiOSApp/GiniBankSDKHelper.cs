@@ -9,8 +9,8 @@ namespace ExampleiOSApp
 {
     public class GiniBankSDKHelper
     {
-        private readonly GiniConfigurationProxy _gConfiguration;
-        private GiniCaptureProxy _gcProxy;
+        private readonly GiniBankConfigurationProxy _gbConfiguration;
+        private GiniBankProxy _gbProxy;
         private GiniCaptureDelegate _gcDelegate;
 
         private static GiniBankSDKHelper _instance;
@@ -81,8 +81,10 @@ namespace ExampleiOSApp
 
         public GiniBankSDKHelper()
         {
-            _gConfiguration = new GiniConfigurationProxy
+            _gbConfiguration = new GiniBankConfigurationProxy
             {
+                EnableReturnReasons = true,
+                ReturnAssistantEnabled = true,
                 OpenWithEnabled = true,
                 DebugModeOn = true,
                 FileImportSupportedTypes = GiniCaptureImportFileTypesProxy.Pdf_and_images,
@@ -96,17 +98,17 @@ namespace ExampleiOSApp
                 NavigationBarTitleFont = UIFont.FromName("Trebuchet MS", 20),
                 DocumentPickerNavigationBarTintColor = UIColor.Blue,
                 CloseButtonResource = new SimplePreferredButtonResource(null, "Close please"),
-                HelpButtonResource = new SimplePreferredButtonResource(UIImage.FromBundle("Help"), null),
+                HelpButtonResource = new SimplePreferredButtonResource(UIImage.FromBundle("Help"), null)
             };
 
             // You can change the order of the onboarding pages by getting the default pages and modifying the array
-            UIView[] pages = _gConfiguration.OnboardingPages;
+            UIView[] pages = _gbConfiguration.OnboardingPages;
             UIView page1 = pages[0];
             pages[0] = pages[2];
             pages[2] = page1;
 
             //// Set the modified pages to be used for onboarding
-            _gConfiguration.OnboardingPages = pages;
+            _gbConfiguration.OnboardingPages = pages;
         }
 
         public void Start(UIViewController viewController, GiniCaptureDocumentProxy importedDocument = null)
@@ -114,23 +116,23 @@ namespace ExampleiOSApp
             if (_gcDelegate != null)
             {
                 _gcDelegate.Dispose();
-                _gcProxy.Dispose();
+                _gbProxy.Dispose();
             }
 
             _gcDelegate = new GiniCaptureDelegate(this);
 
             var credentials = CredentialsHelper.GetGiniBankCredentials();
 
-            _gcProxy = new GiniCaptureProxy(
+            _gbProxy = new GiniBankProxy(
                 credentials.clientDomain,
                 credentials.clientId,
                 credentials.clientPassword,
-                _gConfiguration,
+                _gbConfiguration,
                 _gcDelegate,
                 importedDocument);
 
 
-            var gcViewController = _gcProxy.ViewController;
+            var gcViewController = _gbProxy.ViewController;
             _gcDelegate.GCViewController = gcViewController;
 
             viewController.ShowViewController(gcViewController, null);

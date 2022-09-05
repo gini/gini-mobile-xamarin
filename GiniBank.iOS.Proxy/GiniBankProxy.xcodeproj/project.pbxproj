@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4972297227593D710054FAE9 /* SimplePreferredButtonResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4972297127593D710054FAE9 /* SimplePreferredButtonResource.swift */; };
 		4972297427593F410054FAE9 /* ExtractionProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4972297327593F410054FAE9 /* ExtractionProxy.swift */; };
-		49722976275940630054FAE9 /* GiniConfigurationProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49722975275940630054FAE9 /* GiniConfigurationProxy.swift */; };
+		49722976275940630054FAE9 /* GiniBankConfigurationProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49722975275940630054FAE9 /* GiniBankConfigurationProxy.swift */; };
 		49738A8D275D0122007E23B8 /* GiniBankSDKPinning in Frameworks */ = {isa = PBXBuildFile; productRef = 49738A8C275D0122007E23B8 /* GiniBankSDKPinning */; };
 		49CAD69E27581EAF00C75A28 /* GiniBankProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 49CAD69D27581EAF00C75A28 /* GiniBankProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49CAD6A827581F8E00C75A28 /* GiniBankProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CAD6A727581F8E00C75A28 /* GiniBankProxy.swift */; };
@@ -20,7 +20,7 @@
 /* Begin PBXFileReference section */
 		4972297127593D710054FAE9 /* SimplePreferredButtonResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferredButtonResource.swift; sourceTree = "<group>"; };
 		4972297327593F410054FAE9 /* ExtractionProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractionProxy.swift; sourceTree = "<group>"; };
-		49722975275940630054FAE9 /* GiniConfigurationProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiniConfigurationProxy.swift; sourceTree = "<group>"; };
+		49722975275940630054FAE9 /* GiniBankConfigurationProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiniBankConfigurationProxy.swift; sourceTree = "<group>"; };
 		49CAD69A27581EAF00C75A28 /* GiniBankProxy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GiniBankProxy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49CAD69D27581EAF00C75A28 /* GiniBankProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GiniBankProxy.h; sourceTree = "<group>"; };
 		49CAD6A727581F8E00C75A28 /* GiniBankProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiniBankProxy.swift; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 				49CAD6A727581F8E00C75A28 /* GiniBankProxy.swift */,
 				4972297127593D710054FAE9 /* SimplePreferredButtonResource.swift */,
 				4972297327593F410054FAE9 /* ExtractionProxy.swift */,
-				49722975275940630054FAE9 /* GiniConfigurationProxy.swift */,
+				49722975275940630054FAE9 /* GiniBankConfigurationProxy.swift */,
 			);
 			path = GiniBankProxy;
 			sourceTree = "<group>";
@@ -164,7 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49722976275940630054FAE9 /* GiniConfigurationProxy.swift in Sources */,
+				49722976275940630054FAE9 /* GiniBankConfigurationProxy.swift in Sources */,
 				49CAD6A827581F8E00C75A28 /* GiniBankProxy.swift in Sources */,
 				49E1396D27674A1F00C54060 /* GiniCaptureDocumentBuilderProxy.swift in Sources */,
 				4972297427593F410054FAE9 /* ExtractionProxy.swift in Sources */,
