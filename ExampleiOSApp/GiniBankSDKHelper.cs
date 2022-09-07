@@ -103,12 +103,15 @@ namespace ExampleiOSApp
 
             // You can change the order of the onboarding pages by getting the default pages and modifying the array
             UIView[] pages = _gbConfiguration.OnboardingPages;
-            UIView page1 = pages[0];
-            pages[0] = pages[2];
-            pages[2] = page1;
+            if (_gbConfiguration.OnboardingPages.Length > 0)
+            {
+                UIView page1 = pages[0];
+                pages[0] = pages[2];
+                pages[2] = page1;
 
-            //// Set the modified pages to be used for onboarding
-            _gbConfiguration.OnboardingPages = pages;
+                //// Set the modified pages to be used for onboarding
+                _gbConfiguration.OnboardingPages = pages;
+            }
         }
 
         public void Start(UIViewController viewController, GiniCaptureDocumentProxy importedDocument = null)
