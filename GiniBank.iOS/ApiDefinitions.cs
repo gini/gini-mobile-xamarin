@@ -147,10 +147,10 @@ namespace GiniBank.iOS
 		IntPtr Constructor (GiniCaptureDocumentTypeProxy type, NSData data, string id, [NullAllowed] UIImage previewImage, bool isReviewable, bool isImported);
 	}
 
-	// @interface GiniCaptureProxy : NSObject
+	// @interface GiniBankProxy : NSObject
 	[BaseType (typeof(NSObject))]
 	[DisableDefaultCtor]
-	interface GiniCaptureProxy
+	interface GiniBankProxy
 	{
 		// @property (readonly, nonatomic, strong) UIViewController * _Nonnull viewController;
 		[Export ("viewController", ArgumentSemantic.Strong)]
@@ -159,7 +159,7 @@ namespace GiniBank.iOS
 		// -(instancetype _Nonnull)initWithDomain:(NSString * _Nonnull)domain id:(NSString * _Nonnull)id secret:(NSString * _Nonnull)secret configuration:(GiniConfigurationProxy * _Nullable)configuration delegate:(id<GiniCaptureProxyDelegate> _Nonnull)delegate importedDocument:(GiniCaptureDocumentProxy * _Nullable)importedDocument __attribute__((objc_designated_initializer));
 		[Export ("initWithDomain:id:secret:configuration:delegate:importedDocument:")]
 		[DesignatedInitializer]
-		IntPtr Constructor (string domain, string id, string secret, [NullAllowed] GiniConfigurationProxy configuration, GiniCaptureProxyDelegate @delegate, [NullAllowed] GiniCaptureDocumentProxy importedDocument);
+		IntPtr Constructor (string domain, string id, string secret, [NullAllowed] GiniBankConfigurationProxy configuration, GiniCaptureProxyDelegate @delegate, [NullAllowed] GiniCaptureDocumentProxy importedDocument);
 	}
 
 	// @protocol GiniCaptureProxyDelegate
@@ -182,12 +182,20 @@ namespace GiniBank.iOS
 		void GiniCaptureDidCancelAnalysis ();
 	}
 
-	// @interface GiniConfigurationProxy : NSObject
+	// @interface GiniBankConfigurationProxy : NSObject
 	[BaseType (typeof(NSObject))]
-	interface GiniConfigurationProxy
+	interface GiniBankConfigurationProxy
 	{
-		// @property (nonatomic) BOOL debugModeOn;
-		[Export ("debugModeOn")]
+        // @property (nonatomic) BOOL enableReturnReasons;
+        [Export("enableReturnReasons")]
+        bool EnableReturnReasons { get; set; }
+
+        // @property (nonatomic) BOOL returnAssistantEnabled;
+        [Export("returnAssistantEnabled")]
+        bool ReturnAssistantEnabled { get; set; }
+
+        // @property (nonatomic) BOOL debugModeOn;
+        [Export ("debugModeOn")]
 		bool DebugModeOn { get; set; }
 
 		// @property (nonatomic) enum GiniCaptureImportFileTypesProxy fileImportSupportedTypes;
@@ -273,8 +281,8 @@ namespace GiniBank.iOS
 
 	// @interface GiniBankProxy_Swift_363 (GiniConfigurationProxy)
 	[Category]
-	[BaseType (typeof(GiniConfigurationProxy))]
-	interface GiniConfigurationProxy_GiniBankProxy_Swift_363
+	[BaseType (typeof(GiniBankConfigurationProxy))]
+	interface GiniBankConfigurationProxy_GiniBankProxy_Swift_363
 	{
 	}
 

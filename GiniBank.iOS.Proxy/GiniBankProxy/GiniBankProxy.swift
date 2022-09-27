@@ -238,8 +238,8 @@ public protocol GiniCaptureProxyDelegate {
     @objc func giniCaptureDidCancelAnalysis()
 }
 
-@objc(GiniCaptureProxy)
-public class GiniCaptureProxy : NSObject {
+@objc(GiniBankProxy)
+public class GiniBankProxy : NSObject {
     
     private var client: Client
     private let resultsDelegate: ResultsDelegate
@@ -250,27 +250,92 @@ public class GiniCaptureProxy : NSObject {
     public init(domain: String,
                 id: String,
                 secret: String,
-                configuration: GiniConfigurationProxy?,
+                configuration: GiniBankConfigurationProxy?,
                 delegate: GiniCaptureProxyDelegate,
                 importedDocument: GiniCaptureDocumentProxy? = nil) {
         
         self.client = Client(id: id, secret: secret, domain: domain)
         self.resultsDelegate = ResultsDelegate()
         self.resultsDelegate.gcProxyDelegate = delegate
+       
+        let bankConfiguration = GiniBankConfiguration()
         
-        let giniConfiguration: GiniConfiguration
-        
-        if let configuration = configuration {
-            giniConfiguration = GiniConfiguration(giniConfigurationProxy: configuration)
-        } else {
-            giniConfiguration = GiniConfiguration()
+        if configuration != nil {
+            
+            bankConfiguration.enableReturnReasons =  configuration!.enableReturnReasons
+            
+            bankConfiguration.returnAssistantEnabled = configuration!.returnAssistantEnabled
+            
+            bankConfiguration.debugModeOn = configuration!.debugModeOn
+            
+            switch configuration!.fileImportSupportedTypes {
+                case .none:
+                    bankConfiguration.fileImportSupportedTypes = .none
+                case .pdf:
+                    bankConfiguration.fileImportSupportedTypes = .pdf
+                case .pdf_and_images:
+                    bankConfiguration.fileImportSupportedTypes = .pdf_and_images
+            }
+            
+            bankConfiguration.flashToggleEnabled = configuration!.flashToggleEnabled
+            bankConfiguration.openWithEnabled = configuration!.openWithEnabled
+            bankConfiguration.qrCodeScanningEnabled = configuration!.qrCodeScanningEnabled
+            bankConfiguration.multipageEnabled = configuration!.multipageEnabled
+            bankConfiguration.onboardingShowAtFirstLaunch = configuration!.onboardingShowAtFirstLaunch
+            bankConfiguration.onboardingShowAtLaunch = configuration!.onboardingShowAtLaunch
+            
+            if configuration!.navigationBarItemTintColor != nil {
+                bankConfiguration.navigationBarItemTintColor = configuration!.navigationBarItemTintColor
+            }
+            
+            if configuration!.navigationBarTintColor != nil {
+                bankConfiguration.navigationBarTintColor = configuration!.navigationBarTintColor!
+            }
+            
+            if configuration!.navigationBarTitleColor != nil {
+                bankConfiguration.navigationBarTitleColor = configuration!.navigationBarTitleColor!
+            }
+            
+            if configuration!.navigationBarTitleFont != nil {
+                bankConfiguration.navigationBarTitleFont = configuration!.navigationBarTitleFont!
+            }
+            
+            if configuration!.documentPickerNavigationBarTintColor != nil {
+                bankConfiguration.documentPickerNavigationBarTintColor = configuration!.documentPickerNavigationBarTintColor
+            }
+            
+            if configuration!.closeButtonResource != nil {
+                bankConfiguration.closeButtonResource = configuration!.closeButtonResource
+            }
+            
+            if configuration!.helpButtonResource != nil {
+                bankConfiguration.helpButtonResource = configuration!.helpButtonResource
+            }
+            
+            if configuration!.backToCameraButtonResource != nil {
+                bankConfiguration.backToCameraButtonResource = configuration!.backToCameraButtonResource
+            }
+            
+            if configuration!.backToMenuButtonResource != nil {
+                bankConfiguration.backToMenuButtonResource = configuration!.backToMenuButtonResource
+            }
+            
+            if configuration!.nextButtonResource != nil {
+                bankConfiguration.nextButtonResource = configuration!.nextButtonResource
+            }
+            
+            if configuration!.cancelButtonResource != nil {
+                bankConfiguration.cancelButtonResource = configuration!.cancelButtonResource
+            }
+            
+            bankConfiguration.onboardingPages = configuration!.onboardingPages
         }
         
         if importedDocument == nil
         {
-            self.viewController = GiniCapture.viewController(
+            self.viewController = GiniBank.viewController(
                 withClient: Client(id: id, secret: secret, domain: domain),
-                configuration: giniConfiguration,
+                configuration: bankConfiguration,
                 resultsDelegate: resultsDelegate)
         }
         else {
@@ -283,10 +348,10 @@ public class GiniCaptureProxy : NSObject {
             let giniCaptureDocument = documentBuilder.build(with: importedDocument!.data)
             importedDocuments.append(giniCaptureDocument!)
            
-            self.viewController = GiniCapture.viewController(
+            self.viewController = GiniBank.viewController(
                 withClient: Client(id: id, secret: secret, domain: domain),
                 importedDocuments: importedDocuments,
-                configuration: giniConfiguration,
+                configuration: bankConfiguration,
                 resultsDelegate: resultsDelegate)
         }
         

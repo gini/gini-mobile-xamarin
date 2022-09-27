@@ -319,7 +319,7 @@ The buttons currently available for customization are:
   
 ### Updating the `GiniBank.iOS.dll`
   
-1. Open `GiniBankProxy.xcodeproj` in XCode and build in 'iOS device' and 'iOS simulator' modes for release.
+1. Open `GiniBankProxy.xcodeproj` in XCode and build in 'Any iOS device' and 'iOS simulator' modes for release.
 2. Go to `/Users/{username}/Library/Developer/Xcode/DerivedData` (you can also go to Xcode->Preferences->Locations-Derived Data to find the folder).
 3. Copy the `Release-iphoneos` and `Release-iphonesimulator` folders from `.../DerivedData/GiniBankProxy(...)/Build/Products/` to `GiniBank.iOS.Proxy/build/`.
 4. Run `./build-ios.sh`.
